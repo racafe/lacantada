@@ -51,11 +51,9 @@ var app = {
         console.log('Received Event: ' + id);
     },
 
-    scan: function() {
-        console.log('scanning');
-		alert($(window).height());
-		alert($('#wrapper').height());
-		alert($('#scroller').height());
+    scan: function() {		
+		if($(window).height()==1024)
+			$(window).height('768')
 		myScroll = new iScroll('wrapper',{ hScrollbar:false, vScrollbar:false, bounce:false, momentum:false, scrollX: true, scrollY:false, snap:'section'});
 		//StatusBar.hide();
 		setTimeout(function(){
