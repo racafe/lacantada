@@ -53,6 +53,9 @@ var app = {
 
     scan: function() {
         console.log('scanning');
+		alert($(window).height());
+		alert($('#wrapper').height());
+		alert($('#scroller').height());
 		myScroll = new iScroll('wrapper',{ hScrollbar:false, vScrollbar:false, bounce:false, momentum:false, scrollX: true, scrollY:false, snap:'section'});
 		//StatusBar.hide();
 		setTimeout(function(){
