@@ -10,7 +10,8 @@ preload(
 	"img/cancionero-activo.jpg",
 	"img/menu-activo.jpg",
 	"img/fotos-activo.jpg",
-	"img/info-activo.jpg"
+	"img/info-activo.jpg",
+	"img/bg.jpg"
 )
 
 var promos;
@@ -83,6 +84,7 @@ var app = {
 		slides = $('#slides').bxSlider({
 			controls: false,
 			autoStart: true,
+			slideWidth: 990,
 			onSliderLoad: function(){
 			  setTimeout(function(){
 					$('.bx-wrapper:nth-child(1),#slides').animate({opacity:1},'slow');
@@ -232,9 +234,9 @@ var app = {
 			//Setup click action on img.lazy
 			$("img.lazy").click(function(e) {
 				var data = $(this).attr('data-original');
-				$('#photo_show').animate({opacity:0},'fast',function(){
+				$('#photo_show').animate({opacity:0},'10',function(){
 					$('#photo_show').css('background-image','url('+data+')');
-					$('#photo_show').animate({opacity:1},'fast');
+					$('#photo_show').animate({opacity:1},'10');
 				});
 			});
 			
@@ -244,16 +246,16 @@ var app = {
 			photolist.on('scroll', function(){
 				if(!loading&&this.y<this.maxScrollY){
 					loading = true;
-					$('#photo_list .scroller').append('<img class="lazy" data-original="img/slides/1.jpg" /><img class="lazy" data-original="img/slides/1.jpg" /><img class="lazy" data-original="img/slides/1.jpg" /><img class="lazy" data-original="img/slides/1.jpg" /><img class="lazy" data-original="img/slides/1.jpg" /><img class="lazy" data-original="img/slides/1.jpg" /><img class="lazy" data-original="img/slides/1.jpg" /><img class="lazy" data-original="img/slides/1.jpg" /><img class="lazy" data-original="img/slides/1.jpg" /><img class="lazy" data-original="img/slides/1.jpg" /><img class="lazy" data-original="img/slides/1.jpg" />');
+					$('#photo_list .scroller').append('<img class="lazy" data-original="http://tuquinielita.com/lacantadabar/img/photos/1.jpg" /><img class="lazy" data-original="http://tuquinielita.com/lacantadabar/img/photos/2.jpg" /><img class="lazy" data-original="http://tuquinielita.com/lacantadabar/img/photos/3.jpg" /><img class="lazy" data-original="http://tuquinielita.com/lacantadabar/img/photos/4.jpg" /><img class="lazy" data-original="http://tuquinielita.com/lacantadabar/img/photos/5.jpg" />');
 					photolist.refresh();
 					setTimeout(function(){
 						loading = false;
 						//Setup click action on img.lazy
 						$("img.lazy").click(function(e) {
 							var data = $(this).attr('data-original');
-							$('#photo_show').animate({opacity:0},'fast',function(){
+							$('#photo_show').animate({opacity:0},'10',function(){
 								$('#photo_show').css('background-image','url('+data+')');
-								$('#photo_show').animate({opacity:1},'fast');
+								$('#photo_show').animate({opacity:1},'10');
 							});
 						});
 					},2500);
