@@ -1,4 +1,3 @@
-navigator.splashscreen.show();
 var images = new Array()
 function preload() {
 	for (i = 0; i < preload.arguments.length; i++) {
