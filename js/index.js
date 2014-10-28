@@ -206,7 +206,6 @@ var app = {
 						if (!--count) {
 							//Si no se tiene previamente guardado en localStorage || locaStorage es diferente a lo obtenido o está vacío || no hay nada (ocurre al refresh)
 							if(!localStorage.getItem(target)||localStorage.getItem(target)!=prepend||!$("#"+target+" li").length){
-								console.log(prepend);
 								localStorage.setItem(target,prepend);
 								$("#"+target).html("");
 								$("#"+target).prepend(prepend);
