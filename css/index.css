@@ -25,21 +25,150 @@
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+	margin:0;
+	padding:0;	
+	box-sizing:border-box;
 }
 
 html,body {
-    background:url(../images/1.jpg) no-repeat; background-size:100% 100%;
+	color:#fff;
+    background-image:url(../images/1.jpg);
+	background-image:url(../img/bg.jpg); 
+	background-repeat:no-repeat; 
+	background-size:100% 100%; 
+	position:relative;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:20px;
     height:100%;
-    margin:0px;
-    padding:0px;
-    text-transform:uppercase;
     width:100%;
 	overflow:hidden;
 }
 #wrapper{width:100%; overflow:hidden; height:100%;}
 #scroller {	width:500%;; height:100%}
+
+.page{float:left; width:100%; padding:9px 17px; display:none; min-height:550px;}
+#page_menu{background-color:#0f0;}
+
+#page_info{background-color:#Ff0;}
 section{width:20%; float:left; height:100%; background-size:100% 100%; position:relative;}
 section div{position:absolute; top:50%; margin-top:-20px; width:100%; text-align:center; color:#fff;}
-#splash{position:absolute; top:0; left:0; width:100%; height:100%; background:url(../images/1.jpg) no-repeat; background-size:100% 100%; z-index:1;}
+#splash{position:absolute; top:0; left:0; width:100%; height:100%; background:url(../images/1.jpg) no-repeat; background-size:100% 100%; z-index:1; display:none;}
+
+/** INICIO **/
+#slides,#promos{opacity:0;}
+#slides{min-width:990px; min-height:248px;}
+#promos{min-width:645px;}
+#promos img{width:305px; max-height:227px !important;}
+
+/** CANCIONERO **/
+
+#alphabet ul{list-style:none; float:left; background:rgba(0,0,0,0.5); padding:5px; opacity:0.4;}
+#alphabet ul li{float:left; width:18px; text-align:center; font-size:12px; line-height:18px; color:#bbb;}
+/** FOTOS **/
+#page_fotos{}
+#photo_show{float:left; width:635px; height:500px; background-size:contain; background-position:center; background-repeat:no-repeat;}
+#photo_list img{float:left; margin:0 0 15px 15px; width:90px; height:70px;}
+#photo_list {
+	position: relative;
+	float:right;
+	width: 340px;
+	height: 500px;
+	overflow: hidden;
+
+	/* Prevent native touch events on Windows */
+	-ms-touch-action: none;
+
+	/* Prevent the callout on tap-hold and text selection */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	/* Prevent text resize on orientation change, useful for web-apps */
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+
+#photo_list .scroller {
+	position: absolute;
+
+	/* Prevent elements to be highlighted on tap */
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+
+	/* Put the scroller into the HW Compositing layer right from the start */
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+}
+.iScrollIndicator{border:none !important;}
+
+/** HEADER **/
+header{width:100%; height:126px; position:relative; float:left;}
+#cover{position:absolute; width:88px; height:88px; background-repeat:no-repeat; background-size:contain; left:211px; top:18px; background-image:url(../../lacantadabar/covers/KINGSOFLEON.SexOnFire.jpg);}
+#nowplaying{position:absolute; left:330px; top:22px; color:#fff;}
+#nowplaying h1{font-size:20px; margin:0;}
+#nowplaying h2{font-size:18px; margin:0; font-weight:lighter; color:#aaa;}
+#nextsong{position:absolute; left:330px; top:75px; color:#fff; font-size:15px;}
+#session_name{position:absolute; right:20px; top:20px; width:223px; line-height:42px; text-align:center; font-size:30px}
+#session_user{position:absolute; right:20px; top:63px; width:223px; line-height:42px; text-align:center; font-size:30px}
+
+
+
+/*** NAVIGATION FOOTER **/
+nav{position:fixed; bottom:0; float:left;}
+nav a{float:left; text-decoration:none; background-repeat:no-repeat; background-size:100% 100%; height:88px;}
+#nav_inicio{background-image:url(../img/inicio-inactivo.jpg); width:210px;}
+#nav_inicio.active{background-image:url(../img/inicio-activo.jpg);}
+#nav_cancionero{background-image:url(../img/cancionero-inactivo.jpg); width:284px;}
+#nav_cancionero.active{background-image:url(../img/cancionero-activo.jpg);}
+#nav_menu{background-image:url(../img/menu-inactivo.jpg); width:210px;}
+#nav_menu.active{background-image:url(../img/menu-activo.jpg);}
+#nav_fotos{background-image:url(../img/fotos-inactivo.jpg); width:207px;}
+#nav_fotos.active{background-image:url(../img/fotos-activo.jpg);}
+#nav_info{background-image:url(../img/info-inactivo.jpg); width:112px;}
+#nav_info.active{background-image:url(../img/info-activo.jpg);}
+
+
+@media only screen and (min-device-width: 800px){
+	html,body,#wrapper,#scroller,#splash{height:480px;}
+}
+@media only screen and (min-device-width: 960px){
+	html,body,#wrapper,#scroller,#splash{height:640px;}
+}
+@media only screen and (min-device-width: 1024px){
+	html,body,#wrapper,#scroller,#splash{height:768px;}
+}
+@media only screen and (min-device-width: 1280px){
+	html,body,#wrapper,#scroller,#splash{height:720px;}
+}
+@media only screen and (min-device-width: 1920px){
+	html,body,#wrapper,#scroller,#splash{height:1080px;}
+}
+@media only screen and (min-device-width: 2048px){
+	html,body,#wrapper,#scroller,#splash{height:1536px;}
+}
+
+@media only screen and (min-width: 800px){
+	html,body,#wrapper,#scroller,#splash{height:480px;}
+}
+@media only screen and (min-width: 960px){
+	html,body,#wrapper,#scroller,#splash{height:640px;}
+}
+@media only screen and (min-width: 1024px){
+	html,body,#wrapper,#scroller,#splash{height:768px;}
+}
+@media only screen and (min-width: 1280px){
+	html,body,#wrapper,#scroller,#splash{height:720px;}
+}
+@media only screen and (min-width: 1920px){
+	html,body,#wrapper,#scroller,#splash{height:1080px;}
+}
+@media only screen and (min-width: 2048px){
+	html,body,#wrapper,#scroller,#splash{height:1536px;}
+}
