@@ -84,6 +84,8 @@ var app = {
 		slides = $('#slides').bxSlider({
 			controls: false,
 			autoStart: true,
+			minSlides:1,
+			maxSlides:1,
 			slideWidth: 990,
 			onSliderLoad: function(){
 			  setTimeout(function(){
