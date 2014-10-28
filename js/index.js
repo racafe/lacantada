@@ -6,12 +6,12 @@ function preload() {
 	}
 }
 preload(
+	"img/splash.jpg",
 	"img/inicio-inactivo.jpg",
 	"img/cancionero-activo.jpg",
 	"img/menu-activo.jpg",
 	"img/fotos-activo.jpg",
-	"img/info-activo.jpg",
-	"img/bg.jpg"
+	"img/info-activo.jpg"
 )
 
 var promos;
@@ -84,9 +84,6 @@ var app = {
 		slides = $('#slides').bxSlider({
 			controls: false,
 			autoStart: true,
-			minSlides:1,
-			maxSlides:1,
-			slideWidth: 990,
 			onSliderLoad: function(){
 			  setTimeout(function(){
 					$('.bx-wrapper:nth-child(1),#slides').animate({opacity:1},'slow');
