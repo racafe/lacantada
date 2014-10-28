@@ -253,6 +253,7 @@ var app = {
 		};
 		
 		window.onload = function(e){
+			alert(getLocationHash());
 			updateMyApp(getLocationHash());
 		};
     }
