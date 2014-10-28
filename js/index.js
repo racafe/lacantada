@@ -190,7 +190,7 @@ var app = {
 								localStorage.setItem(target,prepend);
 								$("#"+target).html("");
 								$("#"+target).prepend(prepend);
-								setTimeout(function(){window[target].reloadSlider();},100);
+								setTimeout(function(){eval(target).reloadSlider();},100);
 							}
 							
 						}
@@ -253,7 +253,6 @@ var app = {
 		};
 		
 		window.onload = function(e){
-			alert(getLocationHash());
 			updateMyApp(getLocationHash());
 		};
     }
