@@ -212,8 +212,9 @@ var app = {
 					});
 				},
 				error: function(){
+					alert("error");
 					$("#"+target).append($("<li><img src='img/"+target+"/1.jpg'></img></li>"));
-					setTimeout(function(){promos.reloadSlider();},100);
+					setTimeout(function(){if(target=="slides"){slides.reloadSlider();}else{promos.reloadSlider();}},100);
 				}
 			});
 		}
