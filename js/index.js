@@ -189,19 +189,24 @@ var app = {
 			return false;
 		}
 		function checarSlides(target){
-			var dir = "img/"+target+"/";
-			var prepend = "";
-			var fileextension = ".jpg";
+			var prepend="";
+			if(target=="slides"){
+				type="1";
+			}else{
+				type="2";
+			}
 			$.ajax({
-				url: dir,
-				success: function (data) {
-					var elems = $(data).find("a:contains(" + fileextension + ")"), count = elems.length;
-					elems.each(function () {
-						var filename = this.href.replace(window.location.host+'/lacantada', "").replace("http:///", "");
-						prepend+="<li><img src='" + dir + filename + "'></img></li>";
+				url: "http://www.tuquinielita.com/lacantadabar/getAds.php",
+				dataType: "jsonp",
+				data: {type:type},
+				success: function (response) {
+					count = response.items.length;
+					$.each(response.items,function (i,item) {
+						prepend+="<li><img src='http://www.tuquinielita.com/lacantadabar/" + item.path+ "'></img></li>";
 						if (!--count) {
 							//Si no se tiene previamente guardado en localStorage || locaStorage es diferente a lo obtenido o está vacío || no hay nada (ocurre al refresh)
 							if(!localStorage.getItem(target)||localStorage.getItem(target)!=prepend||!$("#"+target+" li").length){
+								console.log(prepend);
 								localStorage.setItem(target,prepend);
 								$("#"+target).html("");
 								$("#"+target).prepend(prepend);
@@ -213,7 +218,6 @@ var app = {
 				},
 				error: function(){
 					alert("error");
-					$("#"+target).append($("<li><img src='img/"+target+"/1.jpg'></img></li>"));
 					setTimeout(function(){if(target=="slides"){slides.reloadSlider();}else{promos.reloadSlider();}},100);
 				}
 			});
