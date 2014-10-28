@@ -83,7 +83,6 @@ var app = {
 		
 		slides = $('#slides').bxSlider({
 			controls: false,
-			autoStart: true,
 			onSliderLoad: function(){
 			  setTimeout(function(){
 					$('.bx-wrapper:nth-child(1),#slides').animate({opacity:1},'slow');
