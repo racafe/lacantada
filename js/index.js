@@ -1,3 +1,18 @@
+var images = new Array()
+function preload() {
+	for (i = 0; i < preload.arguments.length; i++) {
+		images[i] = new Image()
+		images[i].src = preload.arguments[i]
+	}
+}
+preload(
+	"img/inicio-inactivo.jpg",
+	"img/cancionero-activo.jpg",
+	"img/menu-activo.jpg",
+	"img/fotos-activo.jpg",
+	"img/info-activo.jpg"
+)
+
 var promos;
 var slides;
 /*
@@ -190,7 +205,7 @@ var app = {
 								localStorage.setItem(target,prepend);
 								$("#"+target).html("");
 								$("#"+target).prepend(prepend);
-								setTimeout(function(){eval(target).reloadSlider();},100);
+								setTimeout(function(){if(target=="slides"){slides.reloadSlider();}else{promos.reloadSlider();}},100);
 							}
 							
 						}
@@ -228,6 +243,14 @@ var app = {
 					photolist.refresh();
 					setTimeout(function(){
 						loading = false;
+						//Setup click action on img.lazy
+						$("img.lazy").click(function(e) {
+							var data = $(this).attr('data-original');
+							$('#photo_show').animate({opacity:0},'fast',function(){
+								$('#photo_show').css('background-image','url('+data+')');
+								$('#photo_show').animate({opacity:1},'fast');
+							});
+						});
 					},2500);
 				}
 			});
