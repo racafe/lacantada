@@ -70,8 +70,8 @@ var app = {
     },
 
     start: function() {		
-		//navigator.splashscreen.hide();
-		//updateMyApp("inicio");
+		navigator.splashscreen.hide();
+		updateMyApp("inicio");
 		setTimeout(function(){
 			$('#splash').fadeOut(function(){
 				StatusBar.overlaysWebView(true);
