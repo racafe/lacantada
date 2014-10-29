@@ -70,12 +70,12 @@ var app = {
     },
 
     start: function() {		
-		navigator.splashscreen.hide();
+		//navigator.splashscreen.hide();
+		//updateMyApp("inicio");
 		setTimeout(function(){
 			$('#splash').fadeOut(function(){
 				StatusBar.overlaysWebView(true);
 				StatusBar.show();
-				updateMyApp("inicio");
 			});
 		},3000);
 		
@@ -132,18 +132,36 @@ var app = {
 		var alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 		var current = "";
 		function setup_cancionero(){
+			covers = new IScroll('#covers_section',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
+			covers.scrollTo(0,0,1500);
+			$('#menu_cancionero ul li').click(function(e) {
+				if($(this).hasClass('active')){
+					$('#menu_cancionero ul li').removeClass('active');
+				}else{
+					$('#menu_cancionero ul li').removeClass('active');
+					$(this).addClass('active');
+				}
+            });
 			$('#alphabet ul').on('touchstart',function(e){
+				$(this).css('opacity',1);
+				$('#alphabet span').css('opacity',1);
+				$('#alphabet span').css('color','#bbb');
+			});
+			$('#alphabet span').on('touchstart',function(e){
+				$('#alphabet ul').css('opacity',1);
 				$(this).css('opacity',1);
 			});
 			$('#alphabet ul').on('touchmove',function(e){
 				posX = e.originalEvent.touches[0].pageX;
 				width = $('#alphabet ul').width();
 				if(posX>0&&posX<width){
-					pos = Math.floor(posX/18);
+					pos = Math.floor(posX/20);
 					selected = alphabet[pos];
 					if(current!=selected){
 						$('#alphabet ul li').css('color','#bbb');
-						$('#alphabet ul li').css('font-size','12px');
+						$('#alphabet ul li').css('font-size','15px');
+						$('#alphabet span').css('color','#bbb');
+						$('#alphabet span').css('font-size','15px');
 						current = selected;
 						$('#alphabet ul li:nth-child('+(pos+1)+')').css('color','#fff');
 						$('#alphabet ul li:nth-child('+(pos+1)+')').css('font-size','18px');
@@ -152,11 +170,22 @@ var app = {
 			});
 			$('#alphabet ul').on('touchend',function(e){
 				console.log(current);
-				setTimeout(function(){$('#alphabet ul').animate({opacity:0.4},'slow');},200);
+				setTimeout(function(){$('#alphabet ul').animate({opacity:0.4},'slow');$('#alphabet span').animate({opacity:0.4},'slow');},200);
+			});
+			$('#alphabet span').on('touchend',function(e){
+				setTimeout(function(){$('#alphabet ul').animate({opacity:0.4},'slow');$('#alphabet span').animate({opacity:0.4},'slow');},200);
+			});
+			$('#alphabet span').click(function(e) {
+				$('#alphabet ul li').css('color','#bbb');
+				$('#alphabet ul li').css('font-size','15px');
+				$(this).css('color','#fff');
+				$(this).css('font-size','17px');
 			});
 			$('#alphabet ul li').click(function(e) {
+				$('#alphabet span').css('color','#bbb');
+				$('#alphabet span').css('font-size','15px');
 				$('#alphabet ul li').css('color','#bbb');
-				$('#alphabet ul li').css('font-size','12px');
+				$('#alphabet ul li').css('font-size','15px');
 				current = $(this).html();
 				console.log(current);
 				$(this).css('color','#fff');

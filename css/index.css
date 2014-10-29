@@ -60,9 +60,37 @@ section div{position:absolute; top:50%; margin-top:-20px; width:100%; text-align
 #promos img{width:305px; max-height:227px !important;}
 
 /** CANCIONERO **/
-
+#menu_cancionero ul{list-style:none; float:left; background:#1a1e4b;}
+#menu_cancionero ul li{float:left; width:207px; text-align:center; font-size:16px; line-height:40px; color:#bbb;}
+#menu_cancionero ul li.active{background:#00a918; color:#fff;}
+#menu_cancionero,#alphabet{float:left;}
+#alphabet span{float:left; line-height:40px; font-size:15px; background:rgba(0,0,0,0.5); opacity:0.4; color:#bbb; width:71px; text-align:center;}
 #alphabet ul{list-style:none; float:left; background:rgba(0,0,0,0.5); padding:5px; opacity:0.4;}
-#alphabet ul li{float:left; width:18px; text-align:center; font-size:12px; line-height:18px; color:#bbb;}
+#alphabet ul li{float:left; width:20px; text-align:center; font-size:15px; line-height:30px; color:#bbb;}
+#covers_section{float:left; background:rgba(0,0,0,0.2);margin-top:10px;
+	position: relative;
+	width: 100%;
+	height: 420px;
+	overflow: hidden;
+
+	/* Prevent native touch events on Windows */
+	-ms-touch-action: none;
+
+	/* Prevent the callout on tap-hold and text selection */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	/* Prevent text resize on orientation change, useful for web-apps */
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+#covers_section img{width:175px; height:175px; float:left; margin:17px 11px;}
 /** FOTOS **/
 #page_fotos{}
 #photo_show{float:left; width:635px; height:500px; background-size:contain; background-position:center; background-repeat:no-repeat;}
@@ -92,7 +120,7 @@ section div{position:absolute; top:50%; margin-top:-20px; width:100%; text-align
 	text-size-adjust: none;
 }
 
-#photo_list .scroller {
+.scroller {
 	position: absolute;
 
 	/* Prevent elements to be highlighted on tap */
