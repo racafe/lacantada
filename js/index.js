@@ -55,8 +55,6 @@ var app = {
     // function, we must explicity call `app.receivedEvent(...);`
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-		alert("entro");
-		navigator.splashscreen.hide();
     },
 
     // Update DOM on a Received Event
@@ -72,6 +70,7 @@ var app = {
     },
 
     start: function() {		
+		navigator.splashscreen.hide();
 //		$('#wrapper').height('768');
 //		$('#scroller').height('768');
 //		myScroll = new iScroll('wrapper',{ hScrollbar:false, vScrollbar:false, bounce:false, momentum:false, scrollX: true, scrollY:false, snap:'section'});
