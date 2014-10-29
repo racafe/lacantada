@@ -55,9 +55,8 @@ var app = {
     // function, we must explicity call `app.receivedEvent(...);`
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-		setTimeout(function(){
-			navigator.splashscreen.hide();
-		},5000);
+		alert("entro");
+		navigator.splashscreen.hide();
     },
 
     // Update DOM on a Received Event
