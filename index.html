@@ -22,7 +22,7 @@
             <div class="page active" id="page_inicio">
                 <ul id="slides"></ul>
                 <ul id="promos"></ul>
-                <img src="img/redes.jpg" style="float:left; margin-left:40px;" onClick="promos.reloadSlider();slides.reloadSlider();" />
+                <img src="img/redes.jpg" style="float:left; margin-left:40px;" />
             </div>
             <div class="page" id="page_cancionero">
             	<div style="float:left; width:621px;">
@@ -45,14 +45,19 @@
                         <span>TODOS</span>
                     </div>
                 </div>
-                <div id="search_seccion" style="float:left; margin-left:10px;">
+                <div id="search_section" style="float:left; margin-left:10px;">
                 	<input type="text" style="width:305px; height:40px; background:#1a1e4b; line-height:40px; padding:0 10px; font-size:15px; text-transform:uppercase; color:#fff; margin:0; border:0;" /><img src="img/busqueda.jpg" style="height:40px; float:right;" />
-                    <div style="background:#2a2963; width:358px; height:40px;">
-                    
+                    <div id="search_options" style="background:#2a2963; width:358px; height:40px;">
+                    	<div>
+                        	<input id="radio1" type="radio" name="radio" value="1" checked="checked"><label for="radio1">Artista</label>
+                        </div>
+                        <div>
+                        	<input id="radio2" type="radio" name="radio" value="2"><label for="radio2">Nombre</label>
+                        </div>
+                        <div>
+                        	<input id="radio3" type="radio" name="radio" value="3"><label for="radio3">Todos</label>
+                        </div>
                     </div>
-                    <!--input id="radioImageBased1" type="radio" name="radioImageBased" value="1" checked="checked"><label for="radioImageBased1">Option 1</label>
-                    <input id="radioImageBased2" type="radio" name="radioImageBased" value="2"><label for="radioImageBased2">Option 2</label>
-                    <input id="radioImageBased3" type="radio" name="radioImageBased" value="3"><label for="radioImageBased3">Option 3</label-->
                 </div>
                 <div id="covers_section">
 	                <div class="scroller">
@@ -107,6 +112,19 @@
             <div class="page" id="page_menu">
             </div>
             <div class="page" id="page_info">
+            	<div style="position: relative; width:100%; padding:20px;height:550px; background:rgba(0,0,0,0.2);">
+                    <img src="img/promo1.jpg" id="branch_image" />
+                    <h1>ACERCA DE:</h1>
+                    <p id="branch_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet urna in erat commodo ultrices quis vel lectus. Donec aliquet justo et vehicula mattis. Nulla nec lectus lectus. Sed tortor nunc, interdum id mollis nec, fermentum a nisi. Nunc non accumsan urna. Nulla ante tortor, commodo vitae mauris sit amet, scelerisque imperdiet ligula. Aliquam bibendum eget nisl eget sodales.</p>
+                    <h1>UBICACIÓN:</h1>
+                    <p id="branch_location">Plaza W Local 6-B Vía Atlixcayotl Puebla, Puebla</p>
+                    <h1>HORARIO:</h1>
+                    <p id="branch_schedule">7:00 pm - 4:00 am</p>
+                    <h1>TELÉFONOS:</h1>
+                    <p id="branch_phones">55 2569 1537</p>
+                    <h1>SÍGUENOS A TRAVÉS DE<br>NUESTRAS REDES SOCIALES</h1>
+                    <p id="branch_facebook">/LACANTADABAR &nbsp;&nbsp;&nbsp;&nbsp;@LACANTADABAR&nbsp;&nbsp;&nbsp;&nbsp;LACANTADABAR</p>
+                </div>
             </div>
 	        <nav>
             	<a href="#inicio" class="active" id="nav_inicio" page="inicio"></a>
