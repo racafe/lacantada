@@ -36,7 +36,7 @@ input, textarea, button {
     -ms-appearance: none; /*IE*/
     -o-appearance: none; /*Opera*/
     appearance: none;
-
+	-webkit-user-select: auto !important;
     -webkit-border-radius: 0; 
 }
 html{	background-color:#004;background-image:url(../img/splash.jpg); }
