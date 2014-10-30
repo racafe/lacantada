@@ -168,8 +168,9 @@ input[type=radio]:not(old):checked + label{
 
 /** INFO  **/
 #page_info img{position:absolute; right:20px; width:400px; max-height:550px;}
-#page_info h1:not(:first-child){font-size:25px; margin:25px 0 5px 0;}
+#page_info h1{font-size:25px; margin:25px 0 5px 0;}
 #page_info p{width:500px; text-align:justify; font-size:15px;}
+#info_container{position: relative; width:100%; padding:20px; height:520px; background:rgba(0,0,0,0.2);}
 /** HEADER **/
 header{width:100%; height:126px; position:relative; float:left;}
 #cover{position:absolute; width:88px; height:88px; background-repeat:no-repeat; background-size:contain; left:211px; top:18px; background-image:url(../../lacantadabar/covers/KINGSOFLEON.SexOnFire.jpg);}
