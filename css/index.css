@@ -30,6 +30,15 @@
 	padding:0;	
 	box-sizing:border-box;
 }
+input, textarea, button {
+    -webkit-appearance: none; /*Safari/Chrome*/
+    -moz-appearance: none; /*Firefox*/
+    -ms-appearance: none; /*IE*/
+    -o-appearance: none; /*Opera*/
+    appearance: none;
+
+    -webkit-border-radius: 0; 
+}
 html{	background-color:#004;background-image:url(../img/splash.jpg); }
 body{	background-image:url(../img/bg.jpg); }
 html,body {
