@@ -206,8 +206,10 @@ var app = {
 			});
 			$('#search_section form').submit(function(e) {
                 e.preventDefault();
+				alert("entro");
 				search_text = $('#search').val();
 				if(search_text!=""&&!searching){
+					alert("searching");
 					searching = true;
 					$("#covers_section .scroller").html("");
 					type = $('#search_section form input[name="radio"]:checked').val();
@@ -226,7 +228,9 @@ var app = {
 						dataType: "jsonp",
 						data: {type:type,search:search_text},
 						success: function (response) {
+							alert("response");
 							if(response.success){
+								alert("success");
 								count = response.items.length;
 								$.each(response.items,function (i,item) {
 									result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
@@ -238,6 +242,7 @@ var app = {
 									}
 								});
 							}else{
+								alert("sucess false");
 								searching=false;
 							}
 						},
