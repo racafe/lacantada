@@ -287,16 +287,17 @@ var app = {
 					data: {type:type,search:search_text},
 					success: function (response) {
 						if(response.success){
-							alert("response true");
 							count = response.items.length;
+							alert(count);
 							$.each(response.items,function (i,item) {
 								result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
 								if (!--count) {
+										alert("success");
 										$("#covers_section .scroller").prepend(result);
 										covers.refresh();
 										$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
 										searching=false;
-										alert("success");
+										
 								}
 							});
 						}else{
