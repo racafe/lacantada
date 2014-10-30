@@ -211,6 +211,7 @@ var app = {
 				alert(search_text);
 				alert(searching);
 				if(search_text!=""&&!searching){
+					$('#search').blur();
 					alert("searching");
 					searching = true;
 					$("#covers_section .scroller").html("");
@@ -294,10 +295,12 @@ var app = {
 										covers.refresh();
 										$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
 										searching=false;
+										alert("success");
 								}
 							});
 						}else{
 							searching=false;
+							alert("false");
 						}
 					},
 					error: function(){
