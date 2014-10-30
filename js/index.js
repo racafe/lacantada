@@ -79,7 +79,7 @@ var app = {
 				StatusBar.overlaysWebView(true);
 				StatusBar.show();
 			});
-			search_all();
+			//search_all();
 		},3000);
 		
 		slides = $('#slides').bxSlider({
@@ -290,6 +290,7 @@ var app = {
 							count = response.items.length;
 							alert(count);
 							$.each(response.items,function (i,item) {
+								$('#session_user').html(count);
 								result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
 								if (!--count) {
 										alert("success");
