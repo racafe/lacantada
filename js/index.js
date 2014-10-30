@@ -70,8 +70,8 @@ var app = {
     },
 
     start: function() {		
-		navigator.splashscreen.hide();
-		updateMyApp("inicio");
+		//navigator.splashscreen.hide();
+		//updateMyApp("inicio");
 		setTimeout(function(){
 			$('#splash').fadeOut(function(){
 				StatusBar.overlaysWebView(true);
@@ -105,10 +105,10 @@ var app = {
 		  if(page=="") page="inicio";
 		  $('nav a').removeClass('active');
 		  $('#nav_'+page).addClass('active');
-  			$('.page.active').fadeOut('fast',function(){
+  			$('.page.active').fadeOut('10',function(){
 				$('.page.active').removeClass('active');
 				$('#page_'+page).addClass('active');
-				$('#page_'+page).fadeIn('fast',function(){
+				$('#page_'+page).fadeIn('10',function(){
 					switch(page){
 						case 'inicio':
 							setup_inicio();
