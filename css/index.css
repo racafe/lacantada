@@ -102,7 +102,7 @@ section div{position:absolute; top:50%; margin-top:-20px; width:100%; text-align
 #search_name div{background:#F33;position: absolute;top: 0;right: 0;padding: 0 10px;}
 #covers_section .cover{width:175px; height:175px; float:left; margin:15px 11px; position:relative;}
 #covers_section .cover img{width:175px; height:175px;}
-#covers_section .cover .song_name,#covers_section .cover .artist_name{position:absolute; background:rgba(0,0,0,0.8); color:#888; bottom:0px; line-height:25px; font-size:10px; width:100%; overflow:hidden; padding-left:5px; height:25px;}
+#covers_section .cover .song_name,#covers_section .cover .artist_name{position:absolute; background:rgba(0,0,0,0.8); color:#888; bottom:0px; line-height:25px; font-size:10px; width:100%; overflow:hidden; padding-left:5px; height:25px; font-weight:bold;}
 #covers_section .cover .song_name{background:rgba(0,0,0,0.5);bottom:25px; color:#fff;}
 #search_options{float:left;}
 #search_options div{float:left; padding:9px; font-size:15px; margin:0 10px;}
