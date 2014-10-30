@@ -54,7 +54,7 @@ html,body {
 #wrapper{width:100%; overflow:hidden; height:100%;}
 #scroller {	width:500%;; height:100%}
 
-.page{float:left; width:100%; padding:9px 17px; display:none; min-height:550px;}
+.page{float:left; width:100%; padding:9px 17px; display:none; min-height:553px;}
 
 section{width:20%; float:left; height:100%; background-size:100% 100%; position:relative;}
 section div{position:absolute; top:50%; margin-top:-20px; width:100%; text-align:center; color:#fff;}
@@ -183,7 +183,7 @@ header{width:100%; height:126px; position:relative; float:left;}
 
 
 /*** NAVIGATION FOOTER **/
-nav{position:fixed; bottom:0; float:left;}
+/*nav{position:absolute; bottom:0;}*/
 nav a{float:left; text-decoration:none; background-repeat:no-repeat; background-size:100% 100%; height:88px;}
 #nav_inicio{background-image:url(../img/inicio-inactivo.jpg); width:210px;}
 #nav_inicio.active{background-image:url(../img/inicio-activo.jpg);}
