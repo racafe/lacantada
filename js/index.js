@@ -1,5 +1,5 @@
 var images = new Array()
-var searching = false;
+
 function preload() {
 	for (i = 0; i < preload.arguments.length; i++) {
 		images[i] = new Image()
@@ -71,6 +71,7 @@ var app = {
     },
 
     start: function() {		
+		var searching = false;
 		navigator.splashscreen.hide();
 		updateMyApp("inicio");
 		setTimeout(function(){
