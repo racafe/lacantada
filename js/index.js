@@ -207,8 +207,9 @@ var app = {
 			});
 			$('#search_section form').submit(function(e) {
                 e.preventDefault();
-				alert("entro");
 				search_text = $('#search').val();
+				alert(search_text);
+				alert(searching);
 				if(search_text!=""&&!searching){
 					alert("searching");
 					searching = true;
