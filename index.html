@@ -46,42 +46,25 @@
                     </div>
                 </div>
                 <div id="search_section" style="float:left; margin-left:10px;">
-                	<input placeholder="Buscar" type="text" id="search" /><img src="img/busqueda.jpg" style="height:40px; float:right;" />
+                	<form method="get">
+                	<div><input placeholder="Buscar" type="text" id="search" class="deleteable" maxlength="25" /><img src="img/busqueda.jpg" id="search_button" /></div>
                     <div id="search_options" style="background:#2a2963; width:358px; height:40px;">
                     	<div>
-                        	<input id="radio1" type="radio" name="radio" value="1" checked="checked"><label for="radio1">Artista</label>
+                        	<input id="radio1" type="radio" name="radio" value="1"><label for="radio1">Artista</label>
                         </div>
                         <div>
                         	<input id="radio2" type="radio" name="radio" value="2"><label for="radio2">Nombre</label>
                         </div>
                         <div>
-                        	<input id="radio3" type="radio" name="radio" value="3"><label for="radio3">Todos</label>
+                        	<input id="radio3" type="radio" name="radio" value="3" checked="checked"><label for="radio3">Todos</label>
                         </div>
                     </div>
+                    </form>
                 </div>
+                <div id="search_name">Resultados para: <span></span><div>BORRAR BÚSQUEDA</div></div>
                 <div id="covers_section">
 	                <div class="scroller">
-                        <img src="img/promo1.jpg" />
-                        <img src="img/promo2.jpg" />
-                        <img src="img/promo1.jpg" />
-                        <img src="img/promo2.jpg" />
-                        <img src="img/promo1.jpg" />
-                        <img src="img/promo2.jpg" />
-                        <img src="img/promo1.jpg" />
-                        <img src="img/promo2.jpg" />
-                        <img src="img/promo1.jpg" />
-                        <img src="img/promo2.jpg" />
-                        
-                        <img src="img/promo1.jpg" />
-                        <img src="img/promo2.jpg" />
-                        <img src="img/promo1.jpg" />
-                        <img src="img/promo2.jpg" />
-                        <img src="img/promo1.jpg" />
-                        <img src="img/promo2.jpg" />
-                        <img src="img/promo1.jpg" />
-                        <img src="img/promo2.jpg" />
-                        <img src="img/promo1.jpg" />
-                        <img src="img/promo2.jpg" />
+                        <!--div class="cover"><img src="img/promo1.jpg" /><div class="artist_name">BOB MARLEY</div><div class="song_name">I DON'T WANT TO LOSE A THING</div></div-->
 	                </div>                    
                 </div>
             </div>
@@ -143,6 +126,7 @@
         <script type="text/javascript" src="js/iscroll-probe.js"></script>
         <script src="js/jquery.lazyload.min.js" type="text/javascript"></script>
         <script src="js/jquery.bxslider.min.js" type="text/javascript"></script>
+        <script src="js/jquery.clearsearch.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();

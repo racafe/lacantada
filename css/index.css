@@ -48,7 +48,8 @@ html,body {
 	position:relative;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:20px;
-    width:100%;
+    width:1024px;
+	height:768px;
 	overflow:hidden;
 }
 #wrapper{width:100%; overflow:hidden; height:100%;}
@@ -71,13 +72,13 @@ section div{position:absolute; top:50%; margin-top:-20px; width:100%; text-align
 #menu_cancionero ul li{float:left; width:207px; text-align:center; font-size:16px; line-height:40px; color:#bbb;}
 #menu_cancionero ul li.active{background:#00a918; color:#fff;}
 #menu_cancionero,#alphabet{float:left;}
-#alphabet span{float:left; line-height:40px; font-size:15px; background:rgba(0,0,0,0.5); opacity:0.4; color:#bbb; width:71px; text-align:center;}
+#alphabet span{float:left; line-height:40px; font-size:18px; background:rgba(0,0,0,0.5); opacity:0.4; color:#fff; width:71px; text-align:center;}
 #alphabet ul{list-style:none; float:left; background:rgba(0,0,0,0.5); padding:5px; opacity:0.4;}
 #alphabet ul li{float:left; width:20px; text-align:center; font-size:15px; line-height:30px; color:#bbb;}
 #covers_section{float:left; background:rgba(0,0,0,0.2);margin-top:10px;
 	position: relative;
 	width: 100%;
-	height: 420px;
+	height: 410px;
 	overflow: hidden;
 
 	/* Prevent native touch events on Windows */
@@ -97,9 +98,16 @@ section div{position:absolute; top:50%; margin-top:-20px; width:100%; text-align
 	-o-text-size-adjust: none;
 	text-size-adjust: none;
 }
-#covers_section img{width:175px; height:175px; float:left; margin:17px 11px;}
+#search_name{width:100%; background:#1a1e4b; color:#fff; line-height:30px; font-size:15px; padding:0 10px; float:left; margin-top:10px; margin-bottom:-10px; display:none; position:relative;}
+#search_name div{background:#F33;position: absolute;top: 0;right: 0;padding: 0 10px;}
+#covers_section .cover{width:175px; height:175px; float:left; margin:15px 11px; position:relative;}
+#covers_section .cover img{width:175px; height:175px;}
+#covers_section .cover .song_name,#covers_section .cover .artist_name{position:absolute; background:rgba(0,0,0,0.8); color:#888; bottom:0px; line-height:25px; font-size:10px; width:100%; overflow:hidden; padding-left:5px; height:25px;}
+#covers_section .cover .song_name{background:rgba(0,0,0,0.5);bottom:25px; color:#fff;}
+#search_options{float:left;}
 #search_options div{float:left; padding:9px; font-size:15px; margin:0 10px;}
 #search{width:305px; height:40px; background:#1a1e4b; line-height:40px; padding:0 10px; font-size:15px; text-transform:uppercase; color:#fff; margin:0; border:0; -webkit-appearance: none;}
+#search_button{height:40px; float:right;}
 input[type=radio   ]:not(old){
   width   : 28px;
   margin  : 0;
@@ -171,6 +179,7 @@ input[type=radio]:not(old):checked + label{
 #page_info h1{font-size:25px; margin:25px 0 5px 0;}
 #page_info p{width:500px; text-align:justify; font-size:15px;}
 #info_container{position: relative; width:100%; padding:20px; height:520px; background:rgba(0,0,0,0.2);}
+
 /** HEADER **/
 header{width:100%; height:126px; position:relative; float:left;}
 #cover{position:absolute; width:88px; height:88px; background-repeat:no-repeat; background-size:contain; left:211px; top:18px; background-image:url(../../lacantadabar/covers/KINGSOFLEON.SexOnFire.jpg);}

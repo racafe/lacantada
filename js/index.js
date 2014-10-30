@@ -1,4 +1,5 @@
 var images = new Array()
+var searching = false;
 function preload() {
 	for (i = 0; i < preload.arguments.length; i++) {
 		images[i] = new Image()
@@ -70,13 +71,14 @@ var app = {
     },
 
     start: function() {		
-		navigator.splashscreen.hide();
-		updateMyApp("inicio");
+		//navigator.splashscreen.hide();
+		//updateMyApp("inicio");
 		setTimeout(function(){
 			$('#splash').fadeOut(function(){
 				StatusBar.overlaysWebView(true);
 				StatusBar.show();
 			});
+			search_all();
 		},3000);
 		
 		slides = $('#slides').bxSlider({
@@ -134,6 +136,11 @@ var app = {
 		function setup_cancionero(){
 			covers = new IScroll('#covers_section',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
 			covers.scrollTo(0,0,1500);
+			covers.on('scrollEnd', function(){
+				$("img.lazy2").lazyload();
+				if (this.y == this.maxScrollY){
+				}
+			});
 			$('#menu_cancionero ul li').click(function(e) {
 				if($(this).hasClass('active')){
 					$('#menu_cancionero ul li').removeClass('active');
@@ -192,6 +199,106 @@ var app = {
 				$(this).css('font-size','18px');
             });
 			
+			
+			//Search handler
+			$('#search_button').click(function(e){
+				$('#search_section form').submit();
+			});
+			$('#search_section form').submit(function(e) {
+                e.preventDefault();
+				search_text = $('#search').val();
+				if(search_text!=""&&!searching){
+					searching = true;
+					$("#covers_section .scroller").html("");
+					type = $('#search_section form input[name="radio"]:checked').val();
+					//Setting search_name and sliding down search name text
+					$('#search_name span').html(search_text.toUpperCase());
+					$('#search_name').slideDown('slow');
+					//Resetting alphabet and select TODOS
+					$('#alphabet span').css('color','#fff');
+					$('#alphabet span').css('font-size','18px');
+					$('#alphabet ul li').css('color','#bbb');
+					$('#alphabet ul li').css('font-size','15px');
+					//Search on server
+					result = "";
+					$.ajax({
+						url: "http://www.tuquinielita.com/lacantadabar/getSongs.php",
+						dataType: "jsonp",
+						data: {type:type,search:search_text},
+						success: function (response) {
+							if(response.success){
+								count = response.items.length;
+								$.each(response.items,function (i,item) {
+									result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
+									if (!--count) {
+											$("#covers_section .scroller").prepend(result);
+											covers.refresh();
+											$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
+											searching=false;
+									}
+								});
+							}else{
+								searching=false;
+							}
+						},
+						error: function(){
+							alert("error");
+							searching=false;
+						}
+					});
+				}
+            });
+			//Setting BORRAR BÚSQUEDA click
+			$('#search_name div').click(function(e) {
+				//Sliding up search name and resetting the search name text to empty
+                $('#search_name').slideUp('slow',function(){
+					$('#search_name span').html("");
+				});
+				//Deleting text on search bar input
+				$('#search_section .clear_input').click();
+				search_all();
+            });
+			$('.deleteable').clearSearch();
+		}
+		function search_all(){
+			search_text = "";
+			if(!searching){
+				$("#covers_section .scroller").html("");
+				searching = true;
+				type = $('#search_section form input[name="radio"]:checked').val();
+				//Resetting alphabet and select TODOS
+				$('#alphabet span').css('color','#fff');
+				$('#alphabet span').css('font-size','18px');
+				$('#alphabet ul li').css('color','#bbb');
+				$('#alphabet ul li').css('font-size','15px');
+				//Search on server
+				result = "";
+				$.ajax({
+					url: "http://www.tuquinielita.com/lacantadabar/getSongs.php",
+					dataType: "jsonp",
+					data: {type:type,search:search_text},
+					success: function (response) {
+						if(response.success){
+							count = response.items.length;
+							$.each(response.items,function (i,item) {
+								result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
+								if (!--count) {
+										$("#covers_section .scroller").prepend(result);
+										covers.refresh();
+										$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
+										searching=false;
+								}
+							});
+						}else{
+							searching=false;
+						}
+					},
+					error: function(){
+						alert("error");
+						searching=false;
+					}
+				});
+			}
 		}
 		function setup_inicio(){			
 			if(check_refresh("setup_inicio")){
