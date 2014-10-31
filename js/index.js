@@ -1,5 +1,5 @@
 var images = new Array()
-
+var searching = false;
 function preload() {
 	for (i = 0; i < preload.arguments.length; i++) {
 		images[i] = new Image()
@@ -71,9 +71,8 @@ var app = {
     },
 
     start: function() {		
-		var searching = false;
-		navigator.splashscreen.hide();
-		updateMyApp("inicio");
+		//navigator.splashscreen.hide();
+		//updateMyApp("inicio");
 		setTimeout(function(){
 			$('#splash').fadeOut(function(){
 				StatusBar.overlaysWebView(true);
@@ -200,6 +199,33 @@ var app = {
 				$(this).css('font-size','18px');
             });
 			
+			$('#session_user').click(function(e) {
+                $('#lyrics_wrapper').animate({left:'100%'},'fast');
+            });
+			//Lyricis
+			lyrics = new IScroll('#lyrics',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
+			$('#nowplaying').click(function(e) {
+				$.ajax({
+					url: "http://www.tuquinielita.com/lacantadabar/getLyrics.php",
+					dataType: "jsonp",
+					data: {artist:$(this).find('h2').html(),song:$(this).find('h1').html()},
+					success: function (response) {
+						if(response.Lyric){
+							$('#lyrics .scroller').html(response.Lyric.replace(/\n/g,"<br>"));
+							lyrics.refresh();
+							$('#lyrics_wrapper').animate({left:0},'fast');
+						}else{
+							console.log('entro false');
+							$('#lyrics .scroller').html("");
+							$('#lyrics_wrapper').animate({left:'100%'},'fast');
+						}
+					},
+					error: function(){
+						alert("error");
+						searching=false;
+					}
+				});
+            });
 			
 			//Search handler
 			$('#search_button').click(function(e){
@@ -208,11 +234,8 @@ var app = {
 			$('#search_section form').submit(function(e) {
                 e.preventDefault();
 				search_text = $('#search').val();
-				alert(search_text);
-				alert(searching);
 				if(search_text!=""&&!searching){
 					$('#search').blur();
-					alert("searching");
 					searching = true;
 					$("#covers_section .scroller").html("");
 					type = $('#search_section form input[name="radio"]:checked').val();
@@ -231,9 +254,7 @@ var app = {
 						dataType: "jsonp",
 						data: {type:type,search:search_text},
 						success: function (response) {
-							alert("response");
 							if(response.success){
-								alert("success");
 								count = response.items.length;
 								$.each(response.items,function (i,item) {
 									result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
@@ -241,6 +262,12 @@ var app = {
 											$("#covers_section .scroller").prepend(result);
 											covers.refresh();
 											$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
+											$("img.lazy2").click(function(e) {
+                                                $('#nowplaying h2').html($(this).parent().find('.artist_name').html());
+												$('#nowplaying h1').html($(this).parent().find('.song_name').html());
+												console.log($(this).attr('data-original'));
+												$('#cover').css('background-image',"url("+$(this).attr('data-original')+")");
+                                            });
 											searching=false;
 									}
 								});
@@ -295,10 +322,9 @@ var app = {
 								if (!--count) {
 										alert("success");
 										$("#covers_section .scroller").prepend(result);
-										covers.refresh();
 										$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
 										searching=false;
-										
+										if(covers)covers.refresh();
 								}
 							});
 						}else{
