@@ -71,8 +71,8 @@ var app = {
     },
 
     start: function() {		
-		navigator.splashscreen.hide();
-		updateMyApp("inicio");
+		//navigator.splashscreen.hide();
+		//updateMyApp("inicio");
 		setTimeout(function(){
 			$('#splash').fadeOut(function(){
 				StatusBar.overlaysWebView(true);
@@ -220,7 +220,7 @@ var app = {
 					$("#covers_section .scroller").html("");
 					type = $('#search_section form input[name="radio"]:checked').val();
 					var tipo = " EN TODOS";
-					switch(type){case 1: tipo = " EN ARTISTA"; break; case 2: tipo = " EN CANCIONES"; break;}
+					switch(type){case "1": tipo = " EN ARTISTA"; break; case "2": tipo = " EN CANCIONES"; break;}
 					//Setting search_name and sliding down search name text
 					$('#search_name span').html(search_text.toUpperCase()+tipo);
 					$('#search_name').slideDown('slow');
