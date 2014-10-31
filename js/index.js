@@ -71,8 +71,8 @@ var app = {
     },
 
     start: function() {		
-		navigator.splashscreen.hide();
-		updateMyApp("inicio");
+		//navigator.splashscreen.hide();
+		//updateMyApp("inicio");
 		setTimeout(function(){
 			$('#splash').fadeOut(function(){
 				StatusBar.overlaysWebView(true);
@@ -199,7 +199,7 @@ var app = {
 				$(this).css('font-size','18px');
             });
 			
-			$('#session_user').click(function(e) {
+			$('#close_lyrics').click(function(e) {
                 $('#lyrics_wrapper').animate({left:'100%'},'fast');
             });
 			//Lyricis
@@ -242,6 +242,7 @@ var app = {
 									if (!--count) {
 											$("#covers_section .scroller").prepend(result);
 											covers.refresh();
+											covers.scrollTo(0,0,1500);
 											$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
 											//Setting clic on album cover action (TO DO)
 											cover_click_setup();
@@ -292,14 +293,13 @@ var app = {
 						if(response.success){
 							count = response.items.length;
 							$.each(response.items,function (i,item) {
-								$('#session_user').html(count);
 								result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
 								if (!--count) {
 										$("#covers_section .scroller").prepend(result);
 										$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
 										cover_click_setup();
 										searching=false;
-										if(covers)covers.refresh();
+										if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
 								}
 							});
 						}else{
@@ -446,10 +446,11 @@ function cover_click_setup(){
 			dataType: "jsonp",
 			data: {artist:artista,song:cancion},
 			success: function (response) {
-				if(response.Lyric){
+				if(response.LyricChecksum){
 					$('#lyrics_button').fadeIn();
 					$('#lyrics .scroller').html(response.Lyric.replace(/\n/g,"<br>"));
 					lyrics.refresh();
+					lyrics.scrollTo(0,0,1500);
 				}else{
 					$('#lyrics_button').fadeOut();
 					console.log('entro false');
