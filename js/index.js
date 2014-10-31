@@ -409,7 +409,7 @@ var app = {
 				}
 			});
 			photolist.on('scrollEnd', function(){
-				$("img.lazy").lazyload();
+				$("img.lazy").lazyload().on('load', function () {$(this).removeClass();});
 				if (this.y == this.maxScrollY){
 				}
 			});
