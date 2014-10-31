@@ -71,8 +71,8 @@ var app = {
     },
 
     start: function() {		
-		//navigator.splashscreen.hide();
-		//updateMyApp("inicio");
+		navigator.splashscreen.hide();
+		updateMyApp("inicio");
 		setTimeout(function(){
 			$('#splash').fadeOut(function(){
 				StatusBar.overlaysWebView(true);
@@ -434,32 +434,32 @@ var app = {
     }
 };
 function cover_click_setup(){
-				$("img.lazy2").click(function(e) {
-					$('#lyrics_button').hide();
-					artista = $(this).parent().find('.artist_name').html();
-					cancion = $(this).parent().find('.song_name').html();
-					$('#nowplaying h2').html(artista);
-					$('#nowplaying h1').html(cancion);
-					$('#cover').css('background-image',"url("+$(this).attr('data-original')+")");
-					$.ajax({
-						url: "http://www.tuquinielita.com/lacantadabar/getLyrics.php",
-						dataType: "jsonp",
-						data: {artist:artista,song:cancion},
-						success: function (response) {
-							if(response.Lyric){
-								$('#lyrics_button').fadeIn();
-								$('#lyrics .scroller').html(response.Lyric.replace(/\n/g,"<br>"));
-								lyrics.refresh();
-							}else{
-								$('#lyrics_button').fadeOut();
-								console.log('entro false');
-								$('#lyrics .scroller').html("");
-							}
-						},
-						error: function(){
-							$('#lyrics_button').fadeOut();
-							alert("error");
-						}
-					});
-				});
+	$("img.lazy2").click(function(e) {
+		$('#lyrics_button').hide();
+		artista = $(this).parent().find('.artist_name').html();
+		cancion = $(this).parent().find('.song_name').html();
+		$('#nowplaying h2').html(artista);
+		$('#nowplaying h1').html(cancion);
+		$('#cover').css('background-image',"url("+$(this).attr('data-original')+")");
+		$.ajax({
+			url: "http://www.tuquinielita.com/lacantadabar/getLyrics.php",
+			dataType: "jsonp",
+			data: {artist:artista,song:cancion},
+			success: function (response) {
+				if(response.Lyric){
+					$('#lyrics_button').fadeIn();
+					$('#lyrics .scroller').html(response.Lyric.replace(/\n/g,"<br>"));
+					lyrics.refresh();
+				}else{
+					$('#lyrics_button').fadeOut();
+					console.log('entro false');
+					$('#lyrics .scroller').html("");
+				}
+			},
+			error: function(){
+				$('#lyrics_button').fadeOut();
+				alert("error");
 			}
+		});
+	});
+}
