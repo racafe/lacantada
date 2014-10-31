@@ -71,14 +71,14 @@ var app = {
     },
 
     start: function() {		
-		navigator.splashscreen.hide();
-		updateMyApp("inicio");
+		//navigator.splashscreen.hide();
+		//updateMyApp("inicio");
 		setTimeout(function(){
 			$('#splash').fadeOut(function(){
 				StatusBar.overlaysWebView(true);
 				StatusBar.show();
 			});
-			//search_all();
+			search_all();
 		},3000);
 		
 		slides = $('#slides').bxSlider({
@@ -204,27 +204,8 @@ var app = {
             });
 			//Lyricis
 			lyrics = new IScroll('#lyrics',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
-			$('#nowplaying').click(function(e) {
-				$.ajax({
-					url: "http://www.tuquinielita.com/lacantadabar/getLyrics.php",
-					dataType: "jsonp",
-					data: {artist:$(this).find('h2').html(),song:$(this).find('h1').html()},
-					success: function (response) {
-						if(response.Lyric){
-							$('#lyrics .scroller').html(response.Lyric.replace(/\n/g,"<br>"));
-							lyrics.refresh();
-							$('#lyrics_wrapper').animate({left:0},'fast');
-						}else{
-							console.log('entro false');
-							$('#lyrics .scroller').html("");
-							$('#lyrics_wrapper').animate({left:'100%'},'fast');
-						}
-					},
-					error: function(){
-						alert("error");
-						searching=false;
-					}
-				});
+			$('#lyrics_button').click(function(e) {
+				$('#lyrics_wrapper').animate({left:0},'fast');
             });
 			
 			//Search handler
@@ -262,17 +243,12 @@ var app = {
 											$("#covers_section .scroller").prepend(result);
 											covers.refresh();
 											$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
-											$("img.lazy2").click(function(e) {
-                                                $('#nowplaying h2').html($(this).parent().find('.artist_name').html());
-												$('#nowplaying h1').html($(this).parent().find('.song_name').html());
-												console.log($(this).attr('data-original'));
-												$('#cover').css('background-image',"url("+$(this).attr('data-original')+")");
-                                            });
+											//Setting clic on album cover action (TO DO)
+											cover_click_setup();
 											searching=false;
 									}
 								});
 							}else{
-								alert("sucess false");
 								searching=false;
 							}
 						},
@@ -315,14 +291,13 @@ var app = {
 					success: function (response) {
 						if(response.success){
 							count = response.items.length;
-							alert(count);
 							$.each(response.items,function (i,item) {
 								$('#session_user').html(count);
 								result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
 								if (!--count) {
-										alert("success");
 										$("#covers_section .scroller").prepend(result);
 										$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
+										cover_click_setup();
 										searching=false;
 										if(covers)covers.refresh();
 								}
@@ -458,3 +433,33 @@ var app = {
 		};
     }
 };
+function cover_click_setup(){
+				$("img.lazy2").click(function(e) {
+					$('#lyrics_button').hide();
+					artista = $(this).parent().find('.artist_name').html();
+					cancion = $(this).parent().find('.song_name').html();
+					$('#nowplaying h2').html(artista);
+					$('#nowplaying h1').html(cancion);
+					$('#cover').css('background-image',"url("+$(this).attr('data-original')+")");
+					$.ajax({
+						url: "http://www.tuquinielita.com/lacantadabar/getLyrics.php",
+						dataType: "jsonp",
+						data: {artist:artista,song:cancion},
+						success: function (response) {
+							if(response.Lyric){
+								$('#lyrics_button').fadeIn();
+								$('#lyrics .scroller').html(response.Lyric.replace(/\n/g,"<br>"));
+								lyrics.refresh();
+							}else{
+								$('#lyrics_button').fadeOut();
+								console.log('entro false');
+								$('#lyrics .scroller').html("");
+							}
+						},
+						error: function(){
+							$('#lyrics_button').fadeOut();
+							alert("error");
+						}
+					});
+				});
+			}
