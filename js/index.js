@@ -103,7 +103,7 @@ var app = {
 			}
 		});
 		//Lyrics
-		lyrics = new IScroll('#lyrics',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
+		lyrics = new IScroll('#lyrics',{click: true,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
 		$('#lyrics_button').click(function(e) {
 			$('#lyrics_wrapper').animate({left:0},'fast');
 			lyrics.scrollTo(0,0,1500);
@@ -142,9 +142,7 @@ var app = {
 			covers = new IScroll('#covers_section',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
 			covers.scrollTo(0,0,1500);
 			covers.on('scrollEnd', function(){
-				$("img.lazy2").lazyload();
-				if (this.y == this.maxScrollY){
-				}
+				$("img.lazy2").lazyload().on('load', function () {$(this).removeClass();});
 			});
 			$('#menu_cancionero ul li').click(function(e) {
 				if($(this).hasClass('active')){
@@ -186,6 +184,7 @@ var app = {
 			});
 			$('#alphabet span').on('touchend',function(e){
 				setTimeout(function(){$('#alphabet ul').animate({opacity:0.4},'slow');$('#alphabet span').animate({opacity:0.4},'slow');},200);
+				current="";
 			});
 			$('#alphabet span').click(function(e) {
 				$('#alphabet ul li').css('color','#bbb');
@@ -220,8 +219,10 @@ var app = {
 					searching = true;
 					$("#covers_section .scroller").html("");
 					type = $('#search_section form input[name="radio"]:checked').val();
+					var tipo = " EN TODOS";
+					switch(type){case 1: tipo = " EN ARTISTA"; break; case 2: tipo = " EN CANCIONES"; break;}
 					//Setting search_name and sliding down search name text
-					$('#search_name span').html(search_text.toUpperCase());
+					$('#search_name span').html(search_text.toUpperCase()+tipo);
 					$('#search_name').slideDown('slow');
 					//Resetting alphabet and select TODOS
 					$('#alphabet span').css('color','#fff');
@@ -243,7 +244,7 @@ var app = {
 											$("#covers_section .scroller").prepend(result);
 											covers.refresh();
 											covers.scrollTo(0,0,1500);
-											$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
+											$("img.lazy2").lazyload({effect : "fadeIn",threshold:300,container: $('#covers_section')});
 											//Setting clic on album cover action (TO DO)
 											cover_click_setup();
 											searching=false;
