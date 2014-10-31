@@ -71,8 +71,8 @@ var app = {
     },
 
     start: function() {		
-		//navigator.splashscreen.hide();
-		//updateMyApp("inicio");
+		navigator.splashscreen.hide();
+		updateMyApp("inicio");
 		setTimeout(function(){
 			$('#splash').fadeOut(function(){
 				StatusBar.overlaysWebView(true);
@@ -102,7 +102,12 @@ var app = {
 			  },800);
 			}
 		});
-
+		//Lyrics
+		lyrics = new IScroll('#lyrics',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
+		$('#lyrics_button').click(function(e) {
+			$('#lyrics_wrapper').animate({left:0},'fast');
+			lyrics.scrollTo(0,0,1500);
+        });
 		function updateMyApp(page) {
 		  if(page=="") page="inicio";
 		  $('nav a').removeClass('active');
@@ -202,11 +207,6 @@ var app = {
 			$('#close_lyrics').click(function(e) {
                 $('#lyrics_wrapper').animate({left:'100%'},'fast');
             });
-			//Lyricis
-			lyrics = new IScroll('#lyrics',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
-			$('#lyrics_button').click(function(e) {
-				$('#lyrics_wrapper').animate({left:0},'fast');
-            });
 			
 			//Search handler
 			$('#search_button').click(function(e){
@@ -214,7 +214,7 @@ var app = {
 			});
 			$('#search_section form').submit(function(e) {
                 e.preventDefault();
-				search_text = $('#search').val();
+				search_text = $('#search').val().replace(/\u00F1|\u00D1/g, 'n');
 				if(search_text!=""&&!searching){
 					$('#search').blur();
 					searching = true;
