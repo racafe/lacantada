@@ -228,7 +228,7 @@ nav a{float:left; text-decoration:none; background-repeat:no-repeat; background-
 #nav_info{background-image:url(../img/info-inactivo.jpg); width:112px;}
 #nav_info.active{background-image:url(../img/info-activo.jpg);}
 
-
+/*
 @media only screen and (min-device-width: 800px){
 	html,body,#wrapper,#scroller,#splash{height:480px;}
 }
@@ -265,4 +265,4 @@ nav a{float:left; text-decoration:none; background-repeat:no-repeat; background-
 }
 @media only screen and (min-width: 2048px){
 	html,body,#wrapper,#scroller,#splash{height:1536px;}
-}
+}*/

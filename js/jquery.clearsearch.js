@@ -35,7 +35,7 @@
 	$.fn.clearSearch = function(options) {
 		var settings = $.extend({
 			'clearClass' : 'clear_input',
-			'focusAfterClear' : true,
+			'focusAfterClear' : false,
 			'linkText' : '&times;'
 		}, options);
 		return this.each(function() {

@@ -3,8 +3,6 @@
 <file name="agregar-activo.png" server="tuquinielita.com/public_html/lacantada/" local="130580565240000000" remote="130590096340000000" Dst="1" />
 <file name="agregar-inactivo.png" server="tuquinielita.com/public_html/lacantada/" local="130580565240000000" remote="130590096340000000" Dst="1" />
 <file name="bg.jpg" server="tuquinielita.com/public_html/lacantada/" local="130580487220000000" remote="130590096350000000" Dst="1" />
-<file name="Botonbucar.png" server="tuquinielita.com/public_html/lacantada/" local="130580565240000000" remote="130590096360000000" Dst="1" />
-<file name="Botonbusqueda.png" server="tuquinielita.com/public_html/lacantada/" local="130578754590000000" remote="130590096360000000" Dst="1" />
 <file name="Botonenviar.png" server="tuquinielita.com/public_html/lacantada/" local="130578772890000000" remote="130590096370000000" Dst="1" />
 <file name="Botonplaylist1.png" server="tuquinielita.com/public_html/lacantada/" local="130578772900000000" remote="130590096370000000" Dst="1" />
 <file name="Botonplaylist2.png" server="tuquinielita.com/public_html/lacantada/" local="130578772900000000" remote="130590096370000000" Dst="1" />
@@ -23,11 +21,11 @@
 <file name="inicio-inactivo.jpg" server="tuquinielita.com/public_html/lacantada/" local="130580565240000000" remote="130590096430000000" Dst="1" />
 <file name="menu-activo.jpg" server="tuquinielita.com/public_html/lacantada/" local="130583091810000000" remote="130590096440000000" Dst="1" />
 <file name="menu-inactivo.jpg" server="tuquinielita.com/public_html/lacantada/" local="130583091910000000" remote="130590096440000000" Dst="1" />
-<file name="Pantallaprincipal.jpg" server="tuquinielita.com/public_html/lacantada/" local="130580565250000000" remote="130590096460000000" Dst="1" />
 <file name="promo1.jpg" server="tuquinielita.com/public_html/lacantada/" local="130583267020000000" remote="130590096460000000" Dst="1" />
 <file name="promo2.jpg" server="tuquinielita.com/public_html/lacantada/" local="130583267080000000" remote="130590096470000000" Dst="1" />
 <file name="redes.jpg" server="tuquinielita.com/public_html/lacantada/" local="130583280950000000" remote="130590096470000000" Dst="1" />
 <file name="Selecionactivo.png" server="tuquinielita.com/public_html/lacantada/" local="130580565240000000" remote="130590096480000000" Dst="1" />
 <file name="Selecioninactivo.png" server="tuquinielita.com/public_html/lacantada/" local="130580565240000000" remote="130590096480000000" Dst="1" />
 <file name="splash.jpg" server="tuquinielita.com/public_html/lacantada/" local="130589938680000000" remote="130590096490000000" Dst="1" />
+<file name="busqueda.jpg" server="tuquinielita.com/public_html/lacantada/" local="130590214650000000" remote="130595176820000000" Dst="1" />
 </dwsync>

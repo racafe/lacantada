@@ -1,4 +1,7 @@
 var images = new Array()
+covers_loading = false;
+search_text = "";
+var limit = 0;
 var searching = false;
 function preload() {
 	for (i = 0; i < preload.arguments.length; i++) {
@@ -144,6 +147,12 @@ var app = {
 			covers.on('scrollEnd', function(){
 				$("img.lazy2").lazyload().on('load', function () {$(this).removeClass();});
 			});
+			covers.on('scroll', function(){
+				if(!covers_loading&&limit!=-1&&this.y<this.maxScrollY){
+					covers_loading = true;
+					search_song(search_text);
+				}
+			});
 			$('#menu_cancionero ul li').click(function(e) {
 				if($(this).hasClass('active')){
 					$('#menu_cancionero ul li').removeClass('active');
@@ -211,56 +220,69 @@ var app = {
 			$('#search_button').click(function(e){
 				$('#search_section form').submit();
 			});
+
 			$('#search_section form').submit(function(e) {
                 e.preventDefault();
-				search_text = $('#search').val().replace(/\u00F1|\u00D1/g, 'n');
-				if(search_text!=""&&!searching){
-					$('#search').blur();
-					searching = true;
-					$("#covers_section .scroller").html("");
-					type = $('#search_section form input[name="radio"]:checked').val();
-					var tipo = " EN TODOS";
-					switch(type){case "1": tipo = " EN ARTISTA"; break; case "2": tipo = " EN CANCIONES"; break;}
-					//Setting search_name and sliding down search name text
-					$('#search_name span').html(search_text.toUpperCase()+tipo);
-					$('#search_name').slideDown('slow');
-					//Resetting alphabet and select TODOS
-					$('#alphabet span').css('color','#fff');
-					$('#alphabet span').css('font-size','18px');
-					$('#alphabet ul li').css('color','#bbb');
-					$('#alphabet ul li').css('font-size','15px');
-					//Search on server
-					result = "";
-					$.ajax({
-						url: "http://www.tuquinielita.com/lacantadabar/getSongs.php",
-						dataType: "jsonp",
-						data: {type:type,search:search_text},
-						success: function (response) {
-							if(response.success){
-								count = response.items.length;
-								$.each(response.items,function (i,item) {
-									result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
-									if (!--count) {
-											$("#covers_section .scroller").prepend(result);
-											covers.refresh();
-											covers.scrollTo(0,0,1500);
-											$("img.lazy2").lazyload({effect : "fadeIn",threshold:300,container: $('#covers_section')});
-											//Setting clic on album cover action (TO DO)
-											cover_click_setup();
-											searching=false;
-									}
-								});
-							}else{
-								searching=false;
-							}
-						},
-						error: function(){
-							alert("error");
-							searching=false;
-						}
-					});
+				if(navigator.onLine){
+					limit = 0;
+					search_text = $('#search').val().replace(/\u00F1|\u00D1/g, 'n');
+					if(search_text!=""&&!searching){
+						$('#search').blur();
+						searching = true;
+						$("#covers_section .scroller").html("");
+						type = $('#search_section form input[name="radio"]:checked').val();
+						var tipo = " EN TODOS";
+						switch(type){case "1": tipo = " EN ARTISTA"; break; case "2": tipo = " EN CANCIONES"; break;}
+						//Setting search_name and sliding down search name text
+						$('#search_name span').html("<i>"+search_text.toUpperCase()+"</i>&nbsp;"+tipo);
+						$('#search_name').slideDown('slow');
+						//Resetting alphabet and select TODOS
+						$('#alphabet span').css('color','#fff');
+						$('#alphabet span').css('font-size','18px');
+						$('#alphabet ul li').css('color','#bbb');
+						$('#alphabet ul li').css('font-size','15px');
+						//Search on server
+						search_song(search_text);
+					}
+				}else{
+					alert("desconectado");
 				}
             });
+			function search_song(search_text){
+				result = "";
+				$.ajax({
+					url: "http://www.tuquinielita.com/lacantadabar/getSongs.php",
+					dataType: "jsonp",
+					data: {type:type,search:search_text,limit:limit},
+					success: function (response) {
+						if(response.success){
+							count = response.items.length;
+							$.each(response.items,function (i,item) {
+								result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
+								if (!--count) {
+										$("#covers_section .scroller").append(result);
+										covers.refresh();
+										if(limit==0)covers.scrollTo(0,0,1500);
+										$("img.lazy2").lazyload({effect : "fadeIn",threshold:300,container: $('#covers_section')});
+										//Setting clic on album cover action (TO DO)
+										cover_click_setup();
+										searching=false;
+										covers_loading = false;
+										if(response.count>(limit+100)){limit+=100;}else{limit=-1}
+								}
+							});
+						}else{
+							searching=false;
+							covers_loading = false;
+						}
+					},
+					error: function(){
+						covers_loading = false;
+						alert("error");
+						searching=false;
+					}
+				});
+			}
 			//Setting BORRAR BÚSQUEDA click
 			$('#search_name div').click(function(e) {
 				//Sliding up search name and resetting the search name text to empty
@@ -275,6 +297,7 @@ var app = {
 		}
 		function search_all(){
 			search_text = "";
+			limit = 0;
 			if(!searching){
 				$("#covers_section .scroller").html("");
 				searching = true;
@@ -289,18 +312,19 @@ var app = {
 				$.ajax({
 					url: "http://www.tuquinielita.com/lacantadabar/getSongs.php",
 					dataType: "jsonp",
-					data: {type:type,search:search_text},
+					data: {type:type,search:search_text, limit:0},
 					success: function (response) {
 						if(response.success){
 							count = response.items.length;
 							$.each(response.items,function (i,item) {
 								result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
 								if (!--count) {
-										$("#covers_section .scroller").prepend(result);
+										$("#covers_section .scroller").append(result);
 										$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
 										cover_click_setup();
 										searching=false;
 										if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+										if(response.count>(limit+100)){limit+=100;}else{limit=-1}
 								}
 							});
 						}else{
