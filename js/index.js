@@ -1,6 +1,6 @@
 var images = new Array()
-covers_loading = false;
-search_text = "";
+var covers_loading = false;
+var search_text = "";
 var limit = 0;
 var searching = false;
 function preload() {
@@ -250,6 +250,7 @@ var app = {
 				}
             });
 			function search_song(search_text){
+				alert(limit);
 				result = "";
 				$.ajax({
 					url: "http://www.tuquinielita.com/lacantadabar/getSongs.php",
