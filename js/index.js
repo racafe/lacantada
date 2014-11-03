@@ -143,7 +143,7 @@ var app = {
 		var current = "";
 		function setup_cancionero(){
 			covers = new IScroll('#covers_section',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
-			covers.scrollTo(0,0,1500);
+			//covers.scrollTo(0,0,1500);
 			covers.on('scrollEnd', function(){
 				$("img.lazy2").lazyload().on('load', function () {$(this).removeClass();});
 			});
@@ -245,7 +245,8 @@ var app = {
 						search_song(search_text);
 					}
 				}else{
-					alert("desconectado");
+					$('#noconnection').fadeIn('fast');
+					setTimeout(function(){$('#noconnection').fadeOut('fast');},1000);
 				}
             });
 			function search_song(search_text){
@@ -278,7 +279,6 @@ var app = {
 					},
 					error: function(){
 						covers_loading = false;
-						alert("error");
 						searching=false;
 					}
 				});
@@ -329,11 +329,9 @@ var app = {
 							});
 						}else{
 							searching=false;
-							alert("false");
 						}
 					},
 					error: function(){
-						alert("error");
 						searching=false;
 					}
 				});
