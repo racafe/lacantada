@@ -106,7 +106,7 @@ var app = {
 			}
 		});
 		//Lyrics
-		lyrics = new IScroll('#lyrics',{click: true,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true,momentum:false});
+		lyrics = new IScroll('#lyrics',{click: true,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
 		$('#lyrics_button').click(function(e) {
 			$('#lyrics_wrapper').animate({left:0},'fast');
 			lyrics.scrollTo(0,0,1500);
