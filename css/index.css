@@ -61,6 +61,7 @@ html,body {
 section{width:20%; float:left; height:100%; background-size:100% 100%; position:relative;}
 section div{position:absolute; top:50%; margin-top:-20px; width:100%; text-align:center; color:#fff;}
 #splash{position:absolute; top:0; left:0; width:100%; height:100%; background:url(../img/splash.jpg) no-repeat; background-size:100% 100%; z-index:1;}
+.overlay{position:absolute; top:130px; width:100%; height:530px; background:rgba(0,0,0,0); left:0; z-index:10; display:none;}
 
 /** INICIO **/
 #slides,#promos{opacity:0;}

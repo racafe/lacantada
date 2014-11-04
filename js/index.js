@@ -142,14 +142,14 @@ var app = {
 		var alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 		var current = "";
 		var y=0;
+		var covers = new IScroll('#covers_section',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
 		function setup_cancionero(){
-			covers = new IScroll('#covers_section',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
-			covers.scrollTo(0,y);
+			//covers.scrollTo(0,y);
 			covers.on('scrollEnd', function(){
 				$("img.lazy2").lazyload().on('load', function () {$(this).removeClass();});
 			});
 			covers.on('scroll', function(){
-				y=this.y;
+				//y=this.y;
 				if(!covers_loading&&limit!=-1&&this.y<this.maxScrollY){
 					covers_loading = true;
 					search_song(search_text);
@@ -260,6 +260,7 @@ var app = {
 					data: {type:type,search:search_text,limit:limit},
 					success: function (response) {
 						if(response.success){
+							//$('.overlay').show();
 							count = response.items.length;
 							$.each(response.items,function (i,item) {
 								result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
@@ -267,12 +268,13 @@ var app = {
 										$("#covers_section .scroller").append(result);
 										covers.refresh();
 										if(limit==0)covers.scrollTo(0,0,1500);
-										$("img.lazy2").lazyload({effect : "fadeIn",threshold:300,container: $('#covers_section')});
+										$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
 										//Setting clic on album cover action (TO DO)
 										cover_click_setup();
 										searching=false;
 										setTimeout(function(){covers_loading = false;},2000);
 										if(response.count>(limit+100)){limit+=100;}else{limit=-1}
+										//setTimeout(function(){covers.scrollTo(0,0,1500);$('.overlay').hide();},500);
 								}
 							});
 						}else{
