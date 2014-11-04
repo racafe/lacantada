@@ -106,7 +106,7 @@ var app = {
 			}
 		});
 		//Lyrics
-		lyrics = new IScroll('#lyrics',{click: true,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
+		lyrics = new IScroll('#lyrics',{click: true,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true,momentum:false});
 		$('#lyrics_button').click(function(e) {
 			$('#lyrics_wrapper').animate({left:0},'fast');
 			lyrics.scrollTo(0,0,1500);
@@ -142,7 +142,7 @@ var app = {
 		var alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 		var current = "";
 		var y=0;
-		var covers = new IScroll('#covers_section',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
+		var covers = new IScroll('#covers_section',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true,momentum:false});
 		function setup_cancionero(){
 			//covers.scrollTo(0,y);
 			covers.on('scrollEnd', function(){
@@ -327,7 +327,7 @@ var app = {
 								result+="<div class='cover'><img src='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
 								if (!--count) {
 										$("#covers_section .scroller").append(result);
-										$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
+										//$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
 										cover_click_setup();
 										searching=false;
 										if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
