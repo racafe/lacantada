@@ -146,7 +146,7 @@ var app = {
 		function setup_cancionero(){
 			//covers.scrollTo(0,y);
 			covers.on('scrollEnd', function(){
-				$("img.lazy2").lazyload().on('load', function () {$(this).removeClass();});
+				//$("img.lazy2").lazyload().on('load', function () {$(this).removeClass();});
 			});
 			covers.on('scroll', function(){
 				//y=this.y;
@@ -263,7 +263,8 @@ var app = {
 							//$('.overlay').show();
 							count = response.items.length;
 							$.each(response.items,function (i,item) {
-								result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
+								//result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
+								result+="<div class='cover'><img src='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
 								if (!--count) {
 										$("#covers_section .scroller").append(result);
 										covers.refresh();
@@ -322,7 +323,8 @@ var app = {
 						if(response.success){
 							count = response.items.length;
 							$.each(response.items,function (i,item) {
-								result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
+								//result+="<div class='cover'><img class='lazy2' data-original='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
+								result+="<div class='cover'><img src='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
 								if (!--count) {
 										$("#covers_section .scroller").append(result);
 										$("img.lazy2").lazyload({effect : "fadeIn",container: $('#covers_section')});
