@@ -81,7 +81,7 @@ var app = {
 				StatusBar.overlaysWebView(true);
 				StatusBar.show();
 			});
-			setTimeout(function(){search_all();},1000);
+			setTimeout(function(){search_all();setup_cancionero();},1000);
 		},3000);
 		
 		slides = $('#slides').bxSlider({
@@ -124,7 +124,7 @@ var app = {
 							setup_inicio();
 						break;
 						case 'cancionero':
-							setup_cancionero();
+							
 						break;
 						case 'fotos':
 							if($('#photo_show').css('background-image')=="none"){
@@ -141,9 +141,8 @@ var app = {
 		var alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 		var current = "";
 		var y=0;
-		var covers = new IScroll('#covers_section',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
 		function setup_cancionero(){
-			var covers = new IScroll('#covers_section',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
+			covers = new IScroll('#covers_section',{click: true,probeType:3,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
 			covers.scrollTo(0,y);
 			covers.on('scroll', function(){
 				y=this.y;
@@ -255,7 +254,7 @@ var app = {
             });
 			function search_song(search_text, letter){
 				letter = typeof letter !== 'undefined' ? letter : '';
-				if(limit==0){covers.refresh();covers.scrollTo(0,0);$("#covers_section .scroller").html("");}
+				if(limit==0){$("#covers_section .scroller").html("");covers.scrollTo(0,0);}
 				result = "";
 				$.ajax({
 					url: "http://www.tuquinielita.com/lacantadabar/getSongs.php",
