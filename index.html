@@ -33,9 +33,9 @@
             	<div style="float:left; width:621px;">
                     <div id="menu_cancionero">
                         <ul>
-                            <li target="top10">TOP 10</li>
-                            <li target="destacadas">DESTACADAS</li>
-                            <li target="ultimas">ÚLTIMAS AÑADIDAS</li>
+                            <li target="top10" onClick="getSongsByCategory(1)">TOP 10</li>
+                            <li target="destacadas" onClick="getSongsByCategory(2)">DESTACADAS</li>
+                            <li target="ultimas" onClick="getSongsByCategory(3)">ÚLTIMAS AÑADIDAS</li>
                         </ul>
                     </div>
                     <div id="alphabet">
@@ -67,7 +67,6 @@
                     </form>
                 </div>
                 <div id="search_name">RESULTADOS PARA: <span></span><div>BORRAR BÚSQUEDA</div></div>
-                <div class="overlay"></div>
                 <div id="covers_section">
 	                <div class="scroller"></div>                    
                 </div>
