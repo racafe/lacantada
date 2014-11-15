@@ -60,7 +60,7 @@ html,body {
 
 section{width:20%; float:left; height:100%; background-size:100% 100%; position:relative;}
 section div{position:absolute; top:50%; margin-top:-20px; width:100%; text-align:center; color:#fff;}
-#splash{position:absolute; top:0; left:0; width:100%; height:100%; background:url(../img/splash.jpg) no-repeat; background-size:100% 100%; z-index:1;}
+#splash{position:absolute; top:0; left:0; width:100%; height:100%; background:url(../img/splash.jpg) no-repeat; background-size:100% 100%; z-index:100;}
 
 /** INICIO **/
 #slides,#promos{opacity:0;}
@@ -212,6 +212,8 @@ input[type=radio]:not(old):checked + label{
 	border-top: 1px solid #111;
 	background-color: rgba(0,0,0,0.5);
 	font-size: 14px;
+	/* 2 columns */
+	/*width:50%; float:left; overflow:hidden;*/  
 }
 .scroller li span{color:#fff;}
 .iScrollIndicator{border:none !important; background:rgba(100,100,100,0.5) !important;}
@@ -225,6 +227,7 @@ input[type=radio]:not(old):checked + label{
 
 /** HEADER **/
 header{width:100%; height:126px; position:relative; float:left;}
+#logo{width:445px; position:absolute; top:10px; left:0px; z-index:0;}
 #cover{position:absolute; width:88px; height:88px; background-repeat:no-repeat; background-size:contain; left:211px; top:18px;}
 #nowplaying{position: absolute;left: 325px;top: 16px;color: #fff;width: 431px;padding: 7px 10px;}
 #nowplaying h1{font-size:20px; margin:0;}
@@ -233,8 +236,83 @@ header{width:100%; height:126px; position:relative; float:left;}
 #session_name{position:absolute; right:20px; top:20px; width:223px; line-height:42px; text-align:center; font-size:30px}
 #session_user{position:absolute; right:20px; top:63px; width:223px; line-height:42px; text-align:center; font-size:30px}
 
+/** MENU **/
+.title{width:100%; text-align:center; text-transform:uppercase; font-size:25px; color:#fff; font-weight:bold; background:rgba(0,0,0,0.5); line-height:40px; margin-bottom:10px;}
+#menu {width:530px; margin:5px; float:left; background:rgba(0,0,0,0.2);}
+#menu div:not(.title){float:left; margin:0px 5px 10px 10px; width:160px; height:85px; background-size:100% 100%; }
+div#ron.active{background-image:url(../img/menu/botonesmenuactiv01.png);}
+div#ron{background-image:url(../img/menu/botonesmenuinactivo01.png);}
 
+div#whisky.active{background-image:url(../img/menu/botonesmenuactiv02.png);}
+div#whisky{background-image:url(../img/menu/botonesmenuinactivo02.png);}
 
+div#vodka.active{background-image:url(../img/menu/botonesmenuactiv03.png);}
+div#vodka{background-image:url(../img/menu/botonesmenuinactivo03.png);}
+
+div#tequila.active{background-image:url(../img/menu/botonesmenuactiv4.png);}
+div#tequila{background-image:url(../img/menu/botonesmenuinactivo04.png);}
+
+div#ginebra.active{background-image:url(../img/menu/botonesmenuactiv5.png);}
+div#ginebra{background-image:url(../img/menu/botonesmenuinactivo05.png);}
+
+div#brandy.active{background-image:url(../img/menu/botonesmenuactiv6.png);}
+div#brandy{background-image:url(../img/menu/botonesmenuinactivo06.png);}
+
+div#mezcal.active{background-image:url(../img/menu/botonesmenuactiv7.png);}
+div#mezcal{background-image:url(../img/menu/botonesmenuinactivo07.png);}
+
+div#champagne.active{background-image:url(../img/menu/botonesmenuactiv8.png);}
+div#champagne{background-image:url(../img/menu/botonesmenuinactivo08.png);}
+
+div#cognac.active{background-image:url(../img/menu/botonesmenuactiv9.png);}
+div#cognac{background-image:url(../img/menu/botonesmenuinactivo09.png);}
+
+div#shots.active{background-image:url(../img/menu/botonesmenuactiv10.png);}
+div#shots{background-image:url(../img/menu/botonesmenuinactivo10.png);}
+
+div#licores.active{background-image:url(../img/menu/botonesmenuactiv11.png);}
+div#licores{background-image:url(../img/menu/botonesmenuinactivo11.png);}
+
+div#jarras.active{background-image:url(../img/menu/botonesmenuactiv12.png);}
+div#jarras{background-image:url(../img/menu/botonesmenuinactivo12.png);}
+
+div#margaritas.active{background-image:url(../img/menu/botonesmenuactiv13.png);}
+div#margaritas{background-image:url(../img/menu/botonesmenuinactivo13.png);}
+
+div#colados.active{background-image:url(../img/menu/botonesmenuactiv14.png);}
+div#colados{background-image:url(../img/menu/botonesmenuinactivo14.png);}
+
+div#varios.active{background-image:url(../img/menu/botonesmenuactiv15.png);}
+div#varios{background-image:url(../img/menu/botonesmenuinactivo15.png);}
+
+#menu_target{width:440px; height:525px; float:left; margin:5px; background:rgba(0,0,0,0.2);}
+#menu_target .title{margin:0;}
+#menu_target_list{width:100%; height:440px; overflow:hidden; position: relative;
+	/* Prevent native touch events on Windows */
+	-ms-touch-action: none;
+
+	/* Prevent the callout on tap-hold and text selection */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	/* Prevent text resize on orientation change, useful for web-apps */
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+#menu_target_list .scroller{text-align:center; width:100%; margin-bottom:30px;}
+#menu_target_list .scroller li{list-style:none; background:rgba(0,0,0,0.1); font-weight:normal !important;}
+#menu_target_list .scroller li:first-child{list-style:none; background:rgba(0,0,30,0.3); font-weight:bold;}
+#menu_target_list .scroller li span{ text-transform:uppercase; float:left;}
+#menu_target_list .scroller li span:nth-child(1){width:70px;}
+#menu_target_list .scroller li span:nth-child(2){width:220px; overflow:hidden;}
+#menu_target_list .scroller li span:nth-child(3){width:65px;}
+#menu_target_list .scroller li span:nth-child(4){width:65px;}
 /*** NAVIGATION FOOTER **/
 /*nav{position:absolute; bottom:0;}*/
 nav a{float:left; text-decoration:none; background-repeat:no-repeat; background-size:100% 100%; height:88px;}
