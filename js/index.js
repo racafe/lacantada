@@ -92,8 +92,8 @@ var app = {
     },
 
     start: function() {		
-		//navigator.splashscreen.hide();
-		//updateMyApp("inicio");
+		navigator.splashscreen.hide();
+		updateMyApp("inicio");
 		drinks = false;
 		setTimeout(function(){
 			$('#splash').fadeOut(function(){
