@@ -92,8 +92,8 @@ var app = {
     },
 
     start: function() {		
-		navigator.splashscreen.hide();
-		updateMyApp("inicio");
+		//navigator.splashscreen.hide();
+		//updateMyApp("inicio");
 		drinks = false;
 		setTimeout(function(){
 			$('#splash').fadeOut(function(){
@@ -176,7 +176,7 @@ var app = {
 			});
 			$('#menu_cancionero ul li').click(function(e) {
 				if($(this).hasClass('active')){
-					$('#menu_cancionero ul li').removeClass('active');
+
 				}else{
 					$('#menu_cancionero ul li').removeClass('active');
 					$(this).addClass('active');
@@ -287,7 +287,7 @@ var app = {
 						if(response.success){
 							count = response.items.length;
 							$.each(response.items,function (i,item) {
-								result+="<li data-artist='"+item.artist+"' data-song='"+item.song+"' data-cover='"+item.cover_path+"'>"+item.artist+"  -  <span>"+item.song+"</span></li>";
+								result+="<li data-id='"+item.idSong+"' data-artist='"+item.artist+"' data-song='"+item.song+"' data-km3='"+item.km3_code+"' data-cover='"+item.cover_path+"'>"+item.artist+"  -  <span>"+item.song+"</span></li>";
 								//result+="<div class='cover'><img src='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "' onerror='this.src=\"img/cover.jpg\"'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
 								if (!--count) {
 									$("#covers_section .scroller").append(result);
@@ -344,7 +344,7 @@ var app = {
 						if(response.success){
 							count = response.items.length;
 							$.each(response.items,function (i,item) {
-								result+="<li data-artist='"+item.artist+"' data-song='"+item.song+"' data-cover='"+item.cover_path+"'>"+item.artist+"  -  <span>"+item.song+"</span></li>";
+								result+="<li data-id='"+item.idSong+"' data-artist='"+item.artist+"' data-song='"+item.song+"' data-km3='"+item.km3_code+"' data-cover='"+item.cover_path+"'>"+item.artist+"  -  <span>"+item.song+"</span></li>";
 								//result+="<div class='cover'><img src='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "' onerror='this.src=\"img/cover.jpg\"'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
 								if (!--count) {
 										$("#covers_section .scroller").append(result);
@@ -566,6 +566,7 @@ function cover_click_setup(){
 		$('#lyrics_button').hide();
 		artista = $(this).attr('data-artist');
 		cancion = $(this).attr('data-song');
+		updateSongSelection($(this).attr('data-id'));
 		$('#popup_artist').html(artista);
 		$('#popup_name').html(cancion);
 		$('#popup_cover').css('background-image',"url(http://www.tuquinielita.com/lacantadabar/"+$(this).attr('data-cover')+")");
@@ -651,31 +652,75 @@ function getSongsByCategory(category){
 		$('#search_name div').click();		
 		//Search on server
 		result = "";
-		$.ajax({
-			url: "http://www.tuquinielita.com/lacantadabar/getSongsByCategory.php",
-			dataType: "jsonp",
-			data: {category:category},
-			success: function (response) {
-				if(response.success){
-					count = response.items.length;
-					$.each(response.items,function (i,item) {
-						//result+="<div class='cover'><img src='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "' onerror='this.src=\"img/cover.jpg\"'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
-						result+="<li>"+item.artist+"  -  <span>"+item.song+"</span></li>";
-						if (!--count) {
-								$("#covers_section .scroller").append(result);
-								cover_click_setup();
-								searching=false;
-								if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
-								limit=-1;
-						}
-					});
-				}else{
+		if(category=="2"){
+			$.ajax({
+				url: "http://www.tuquinielita.com/lacantadabar/getSongsByCategory.php",
+				dataType: "jsonp",
+				data: {category:category},
+				success: function (response) {
+					if(response.success){
+						count = response.items.length;
+						$.each(response.items,function (i,item) {
+							//result+="<div class='cover'><img src='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "' onerror='this.src=\"img/cover.jpg\"'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
+							result+="<li data-id='"+item.idSong+"' data-artist='"+item.artist+"' data-song='"+item.song+"' data-km3='"+item.km3_code+"' data-cover='"+item.cover_path+"'>"+item.artist+"  -  <span>"+item.song+"</span></li>";
+							if (!--count) {
+									$("#covers_section .scroller").append(result);
+									cover_click_setup();
+									searching=false;
+									if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+									limit=-1;
+							}
+						});
+					}else{
+						searching=false;
+					}
+				},
+				error: function(){
 					searching=false;
 				}
-			},
-			error: function(){
-				searching=false;
-			}
-		});
+			});
+		}else if(category=="1"){
+			$.ajax({
+				url: "http://www.tuquinielita.com/lacantadabar/getTop100.php",
+				dataType: "jsonp",
+				success: function (response) {
+					if(response.success){
+						count = response.items.length;
+						$.each(response.items,function (i,item) {
+							//result+="<div class='cover'><img src='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "' onerror='this.src=\"img/cover.jpg\"'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
+							result+="<li data-id='"+item.idSong+"' data-artist='"+item.artist+"' data-song='"+item.song+"' data-km3='"+item.km3_code+"' data-cover='"+item.cover_path+"'>"+item.artist+"  -  <span>"+item.song+"</span></li>";
+							if (!--count) {
+									$("#covers_section .scroller").append(result);
+									cover_click_setup();
+									searching=false;
+									if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+									limit=-1;
+							}
+						});
+					}else{
+						searching=false;
+					}
+				},
+				error: function(){
+					searching=false;
+					alert();
+				}
+			});
+		}else{
+			
+		}
 	}	
+}
+function updateSongSelection(idSong){
+	$.ajax({
+		url: "http://www.tuquinielita.com/lacantadabar/updateSongSelection.php",
+		dataType: "jsonp",
+		data: {idSong:idSong},
+		success: function (response) {
+			if(response.success){
+			}
+		},
+		error: function(){
+		}
+	});
 }
