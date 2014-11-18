@@ -73,6 +73,7 @@ section div{position:absolute; top:50%; margin-top:-20px; width:100%; text-align
 #popup_song{width:700px; height:350px; background:rgba(0,0,0,0.5); position:absolute; left:50%; margin-left:-350px; top:50%; margin-top:-175px;}
 #popup_cover{width:220px; height:220px; position:absolute; top:65px; left:35px; background:#000; border:thick #555 solid; background-size: 100% 100%;}
 #popup_name, #popup_artist, #popup_km3{position:absolute; left:280px; font-size:23px; background-size:contain; background-position:left; background-repeat:no-repeat; padding-left:40px; background-image:url(../img/popup1.png); white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis; width:360px; line-height:30px;}
+#popup_lyrics{position:absolute; left:280px; line-height:43px; padding:0 10px; background:#093; color:#fff; font-size:15px; font-weight:bold; top:250px;; display:none;}
 #popup_name{font-weight:bold; top:100px; background-image:url(../img/popup1.png); font-size:30px;}
 #popup_artist{top:150px;}
 #popup_km3{top:200px;}

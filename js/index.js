@@ -92,6 +92,11 @@ var app = {
     },
 
     start: function() {		
+		$(document).ajaxError(function(statusCode, errorThrown) {
+			if (statusCode.status == 0) {
+				alert("Sin conexión a internet");
+			}
+		});
 		navigator.splashscreen.hide();
 		updateMyApp("inicio");
 		drinks = false;
@@ -128,6 +133,10 @@ var app = {
 		//Lyrics
 		lyrics = new IScroll('#lyrics',{click: true,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
 		$('#lyrics_button').click(function(e) {
+			$('#lyrics_wrapper').animate({left:0},'fast');
+			lyrics.scrollTo(0,0,1500);
+        });
+		$('#popup_lyrics').click(function(e) {
 			$('#lyrics_wrapper').animate({left:0},'fast');
 			lyrics.scrollTo(0,0,1500);
         });
@@ -563,26 +572,28 @@ var app = {
 };
 function cover_click_setup(){
 	$("#covers_section .scroller li").click(function(e) {
-		$('#lyrics_button').hide();
+		$('#popup_lyrics').hide();
 		artista = $(this).attr('data-artist');
 		cancion = $(this).attr('data-song');
 		updateSongSelection($(this).attr('data-id'));
+		km3 = $(this).attr('data-km3');
 		$('#popup_artist').html(artista);
 		$('#popup_name').html(cancion);
+		$('#popup_km3').html(km3);
 		$('#popup_cover').css('background-image',"url(http://www.tuquinielita.com/lacantadabar/"+$(this).attr('data-cover')+")");
 		$("#popup").fadeIn();
-/*		$.ajax({
+		$.ajax({
 			url: "http://www.tuquinielita.com/lacantadabar/getLyrics.php",
 			dataType: "jsonp",
 			data: {artist:artista,song:cancion},
 			success: function (response) {
 				if(response.LyricChecksum){
-					$('#lyrics_button').fadeIn();
+					$('#popup_lyrics').fadeIn();
 					$('#lyrics .scroller').html(response.Lyric.replace(/\n/g,"<br>"));
 					lyrics.refresh();
 					lyrics.scrollTo(0,0,1500);
 				}else{
-					$('#lyrics_button').fadeOut();
+					$('#popup_lyrics').fadeOut();
 					console.log('entro false');
 					$('#lyrics .scroller').html("");
 				}
@@ -591,7 +602,7 @@ function cover_click_setup(){
 				$('#lyrics_button').fadeOut();
 				alert("error");
 			}
-		});*/
+		});
 	});
 	$(".cover").click(function(e) {
 		$('#lyrics_button').hide();
