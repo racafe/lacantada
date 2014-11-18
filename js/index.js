@@ -100,7 +100,8 @@ var app = {
 				StatusBar.overlaysWebView(true);
 				StatusBar.show();
 			});
-			setTimeout(function(){search_all();setup_cancionero();},1000);
+			setup_cancionero();
+			setTimeout(function(){search_all();},1000);
 		},3000);
 		
 		slides = $('#slides').bxSlider({
@@ -349,7 +350,7 @@ var app = {
 										$("#covers_section .scroller").append(result);
 										cover_click_setup();
 										searching=false;
-										if(covers){covers.refresh();covers.scrollTo(0,0,1500); alert("entro");}
+										if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
 										if(response.count>(limit+100)){limit+=100;}else{limit=-1}
 								}
 							});
