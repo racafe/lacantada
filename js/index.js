@@ -349,7 +349,7 @@ var app = {
 										$("#covers_section .scroller").append(result);
 										cover_click_setup();
 										searching=false;
-										if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+										if(covers){covers.refresh();covers.scrollTo(0,0,1500); alert("entro");}
 										if(response.count>(limit+100)){limit+=100;}else{limit=-1}
 								}
 							});
