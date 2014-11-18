@@ -12,6 +12,15 @@
     <body id="body" oncontextmenu="return false;">
     	<div id="noconnection">SIN CONEXIÓN A INTERNET</div>
     	<div id="splash"></div>
+        <div id="popup">
+        	<div id="popup_song">
+            	<div id="popup_close" onClick="$('#popup').fadeOut();"></div>
+                <div id="popup_name">Y COMO ES EL</div>
+                <div id="popup_artist">MARC ANTHONY</div>
+                <div id="popup_km3">3981283483</div>
+                <div id="popup_cover"></div>
+            </div>
+        </div>
         <div id="container">
         	<header>
             	<img src="img/logo.png" id="logo" />
@@ -34,7 +43,7 @@
             	<div style="float:left; width:621px;">
                     <div id="menu_cancionero">
                         <ul>
-                            <li target="top10" onClick="getSongsByCategory(1)">TOP 10</li>
+                            <li target="top10" onClick="getSongsByCategory(1)">TOP 100</li>
                             <li target="destacadas" onClick="getSongsByCategory(2)">DESTACADAS</li>
                             <li target="ultimas" onClick="getSongsByCategory(3)">ÚLTIMAS AÑADIDAS</li>
                         </ul>
