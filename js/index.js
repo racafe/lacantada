@@ -288,7 +288,7 @@ var app = {
             });
 			function search_song(search_text, letter){
 				letter = typeof letter !== 'undefined' ? letter : '';
-				if(limit==0){$("#covers_section .scroller").html("");covers.scrollTo(0,0);}
+				if(limit==0){$("#covers_section .scroller").html("");covers.scrollTo(0,2,500);}
 				result = "";
 				$.ajax({
 					url: "http://www.tuquinielita.com/lacantadabar/getSongs.php",
@@ -704,7 +704,7 @@ function getSongsByCategory(category){
 									$("#covers_section .scroller").append(result);
 									cover_click_setup();
 									searching=false;
-									if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+									if(covers){covers.refresh();covers.scrollTo(0,2,1500);}
 									limit=-1;
 							}
 						});
@@ -730,7 +730,7 @@ function getSongsByCategory(category){
 									$("#covers_section .scroller").append(result);
 									cover_click_setup();
 									searching=false;
-									if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+									if(covers){covers.refresh();covers.scrollTo(0,2,1500);}
 									limit=-1;
 							}
 						});
@@ -757,7 +757,7 @@ function getSongsByCategory(category){
 									$("#covers_section .scroller").append(result);
 									cover_click_setup();
 									searching=false;
-									if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+									if(covers){covers.refresh();covers.scrollTo(0,2,1500);}
 									limit=-1;
 							}
 						});
