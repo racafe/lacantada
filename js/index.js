@@ -1,5 +1,6 @@
 var images = new Array()
 var covers_loading = false;
+var covers;
 var search_text = "";
 var drinks = false;
 var limit = 0;
@@ -94,7 +95,8 @@ var app = {
     start: function() {		
 		$(document).ajaxError(function(statusCode, errorThrown) {
 			if (statusCode.status == 0) {
-				alert("Sin conexión a internet");
+				$('#noconnection').fadeIn('fast');
+				setTimeout(function(){$('#noconnection').fadeOut('fast');},1000);
 			}
 		});
 		navigator.splashscreen.hide();
@@ -155,8 +157,8 @@ var app = {
 						case 'menu':
 							setup_menu();
 						break;
-						case 'cancionero':
-							
+						case 'info':
+							setup_info();
 						break;
 						case 'fotos':
 							if($('#photo_show').css('background-image')=="none"){
@@ -356,10 +358,11 @@ var app = {
 								result+="<li data-id='"+item.idSong+"' data-artist='"+item.artist+"' data-song='"+item.song+"' data-km3='"+item.km3_code+"' data-cover='"+item.cover_path+"'>"+item.artist+"  -  <span>"+item.song+"</span></li>";
 								//result+="<div class='cover'><img src='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "' onerror='this.src=\"img/cover.jpg\"'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
 								if (!--count) {
-										$("#covers_section .scroller").append(result);
+										$("#covers_section .scroller").html(result);
 										cover_click_setup();
 										searching=false;
 										if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+										setTimeout(function(){covers.refresh();},2500);
 										if(response.count>(limit+100)){limit+=100;}else{limit=-1}
 								}
 							});
@@ -553,6 +556,29 @@ var app = {
 			});*/
 			
 		}
+		function setup_info(){
+			$.ajax({
+				url: "http://www.tuquinielita.com/lacantadabar/getInfo.php",
+				dataType: "jsonp",
+				data:{branch:1},
+				success: function (response) {
+					if(response.success){
+						if($('#branch_description').html()!=response.description)
+							$('#branch_description').html(response.description);
+						if($('#branch_location').html()!=response.location)
+							$('#branch_location').html(response.location);
+						if($('#branch_schedule').html()!=response.schedule)
+							$('#branch_schedule').html(response.schedule);
+						if($('#branch_phones').html()!=response.phones)
+							$('#branch_phones').html(response.phones);
+					}
+				},
+				error: function(){
+					alert("error");
+					setTimeout(function(){if(target=="slides"){slides.reloadSlider();}else{promos.reloadSlider();}},100);
+				}
+			});
+		}
 		function getLocationHash () {
 		  return window.location.hash.substring(1);
 		}
@@ -663,7 +689,7 @@ function getSongsByCategory(category){
 		$('#search_name div').click();		
 		//Search on server
 		result = "";
-		if(category=="2"){
+		if(category=="3"){
 			$.ajax({
 				url: "http://www.tuquinielita.com/lacantadabar/getSongsByCategory.php",
 				dataType: "jsonp",
@@ -718,7 +744,32 @@ function getSongsByCategory(category){
 				}
 			});
 		}else{
-			
+			$.ajax({
+				url: "http://www.tuquinielita.com/lacantadabar/getDestacadas.php",
+				dataType: "jsonp",
+				success: function (response) {
+					if(response.success){
+						count = response.items.length;
+						$.each(response.items,function (i,item) {
+							//result+="<div class='cover'><img src='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "' onerror='this.src=\"img/cover.jpg\"'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
+							result+="<li data-id='"+item.idSong+"' data-artist='"+item.artist+"' data-song='"+item.song+"' data-km3='"+item.km3_code+"' data-cover='"+item.cover_path+"'>"+item.artist+"  -  <span>"+item.song+"</span></li>";
+							if (!--count) {
+									$("#covers_section .scroller").append(result);
+									cover_click_setup();
+									searching=false;
+									if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+									limit=-1;
+							}
+						});
+					}else{
+						searching=false;
+					}
+				},
+				error: function(){
+					searching=false;
+					alert();
+				}
+			});
 		}
 	}	
 }
