@@ -705,7 +705,9 @@ function getSongsByCategory(category){
 									$("#covers_section .scroller").append(result);
 									cover_click_setup();
 									searching=false;
-									if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+									setTimeout(function(){
+										if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+									},1000);
 									limit=-1;
 							}
 						});
@@ -731,7 +733,9 @@ function getSongsByCategory(category){
 									$("#covers_section .scroller").append(result);
 									cover_click_setup();
 									searching=false;
-									if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+									setTimeout(function(){
+										if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+									},1000);
 									limit=-1;
 							}
 						});
@@ -758,7 +762,9 @@ function getSongsByCategory(category){
 									$("#covers_section .scroller").append(result);
 									cover_click_setup();
 									searching=false;
-									if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+									setTimeout(function(){
+										if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
+									},1000);
 									limit=-1;
 							}
 						});
