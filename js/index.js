@@ -93,7 +93,7 @@ var app = {
     },
 
     start: function() {		
-		$(document).ajaxError(function(statusCode, errorThrown) {
+		$.ajaxError(function(statusCode, errorThrown) {
 			if (statusCode.status == 0) {
 				$('#noconnection').fadeIn('fast');
 				setTimeout(function(){$('#noconnection').fadeOut('fast');},1000);
@@ -187,10 +187,12 @@ var app = {
 			});
 			$('#menu_cancionero ul li').click(function(e) {
 				if($(this).hasClass('active')){
-
+					$(this).removeClass('active');
+					search_all();
 				}else{
 					$('#menu_cancionero ul li').removeClass('active');
 					$(this).addClass('active');
+					getSongsByCategory($(this).attr('data-category'));
 				}
             });
 			$('#alphabet ul').on('touchstart',function(e){
