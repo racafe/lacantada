@@ -93,14 +93,23 @@ var app = {
     },
 
     start: function() {		
-		$.ajaxError(function(statusCode, errorThrown) {
+		navigator.splashscreen.hide();
+		updateMyApp("inicio");
+		$('#menu_cancionero ul li').noClickDelay();
+		$('#lyrics_button').noClickDelay();
+		$('#popup_lyrics').noClickDelay();
+		$('#alphabet span').noClickDelay();
+		$('#alphabet ul li').noClickDelay();
+		$('#close_lyrics').noClickDelay();
+		$('#popup_close').noClickDelay();
+		$('.scroller li').noClickDelay();
+		
+		$(document).ajaxError(function(statusCode, errorThrown) {
 			if (statusCode.status == 0) {
 				$('#noconnection').fadeIn('fast');
 				setTimeout(function(){$('#noconnection').fadeOut('fast');},1000);
 			}
 		});
-		navigator.splashscreen.hide();
-		updateMyApp("inicio");
 		drinks = false;
 		setTimeout(function(){
 			$('#splash').fadeOut(function(){
