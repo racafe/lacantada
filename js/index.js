@@ -301,9 +301,8 @@ var app = {
 								result+="<li data-id='"+item.idSong+"' data-artist='"+item.artist+"' data-song='"+item.song+"' data-km3='"+item.km3_code+"' data-cover='"+item.cover_path+"'>"+item.artist+"  -  <span>"+item.song+"</span></li>";
 								//result+="<div class='cover'><img src='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "' onerror='this.src=\"img/cover.jpg\"'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
 								if (!--count) {
-									$("#covers_section .scroller").html(result);
+									$("#covers_section .scroller").append(result);
 									covers.refresh();
-									covers.scrollTo(0,0,1500);
 									//Setting clic on album cover action (TO DO)
 									cover_click_setup();
 									searching=false;
@@ -705,9 +704,7 @@ function getSongsByCategory(category){
 									$("#covers_section .scroller").append(result);
 									cover_click_setup();
 									searching=false;
-									setTimeout(function(){
-										if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
-									},1000);
+									if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
 									limit=-1;
 							}
 						});
@@ -733,9 +730,7 @@ function getSongsByCategory(category){
 									$("#covers_section .scroller").append(result);
 									cover_click_setup();
 									searching=false;
-									setTimeout(function(){
-										if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
-									},1000);
+									if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
 									limit=-1;
 							}
 						});
@@ -762,9 +757,7 @@ function getSongsByCategory(category){
 									$("#covers_section .scroller").append(result);
 									cover_click_setup();
 									searching=false;
-									setTimeout(function(){
-										if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
-									},1000);
+									if(covers){covers.refresh();covers.scrollTo(0,0,1500);}
 									limit=-1;
 							}
 						});
