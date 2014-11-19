@@ -582,6 +582,8 @@ var app = {
 							$('#branch_schedule').html(response.schedule);
 						if($('#branch_phones').html()!=response.phones)
 							$('#branch_phones').html(response.phones);
+						if($('#branch_image').attr('src')!="http://tuquinielita.com/lacantadabar/"+response.image_path)
+							$('#branch_image').attr('src',"http://tuquinielita.com/lacantadabar/"+response.image_path);
 					}
 				},
 				error: function(){
