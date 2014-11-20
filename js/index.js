@@ -200,8 +200,8 @@ var app = {
 					search_all();
 				}else{
 					$('#menu_cancionero ul li').removeClass('active');
-					$(this).addClass('active');
 					getSongsByCategory($(this).attr('data-category'));
+					$(this).addClass('active');
 				}
             });
 			$('#alphabet ul').on('touchstart',function(e){
