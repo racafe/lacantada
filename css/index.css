@@ -74,9 +74,9 @@ section div{position:absolute; top:50%; margin-top:-20px; width:100%; text-align
 #popup_cover{width:220px; height:220px; position:absolute; top:65px; left:35px; background:#000; border:thick #555 solid; background-size: 100% 100%;}
 #popup_name, #popup_artist, #popup_km3{position:absolute; left:280px; font-size:23px; background-size:contain; background-position:left; background-repeat:no-repeat; padding-left:40px; background-image:url(../img/popup1.png); white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis; width:360px; line-height:30px;}
 #popup_lyrics{position:absolute; left:280px; line-height:43px; padding:0 10px; background:#093; color:#fff; font-size:15px; font-weight:bold; top:250px;; display:none;}
-#popup_name{font-weight:bold; top:100px; background-image:url(../img/popup1.png); font-size:30px;}
-#popup_artist{top:150px;}
-#popup_km3{top:200px;}
+#popup_name{font-weight:bold; top:100px; background-image:url(../img/popup3.png); font-size:30px;}
+#popup_artist{top:150px; background-image:url(../img/popup4.png);}
+#popup_km3{top:200px; background-image:url(../img/popup6.png);}
 #popup_close{width:32px; height:32px; position:absolute; right:10px; top:10px; background:url(../img/popup1.png); background-size:100% 100%;}
 #menu_cancionero ul{list-style:none; float:left; background:#1a1e4b;}
 #menu_cancionero ul li{float:left; width:207px; text-align:center; font-size:16px; line-height:40px; color:#bbb;}
@@ -239,7 +239,7 @@ header{width:100%; height:126px; position:relative; float:left;}
 #logo{width:445px; position:absolute; top:10px; left:0px; z-index:0;}
 #logo1{height:124px; position:absolute; top:10px; left:20px; z-index:0;}
 #logo3{height:124px; position:absolute; top:10px; right:20px; z-index:0;}
-#logo2{height:174px; position:absolute; top:-30px; left:50%; margin-left:-200px; z-index:0;}
+#logo2{height:174px; position:absolute; top:-22px; left:50%; margin-left:-200px; z-index:0;}
 #cover{position:absolute; width:88px; height:88px; background-repeat:no-repeat; background-size:contain; left:211px; top:18px;}
 #nowplaying{position: absolute;left: 325px;top: 16px;color: #fff;width: 431px;padding: 7px 10px;}
 #nowplaying h1{font-size:20px; margin:0;}
