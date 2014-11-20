@@ -195,13 +195,15 @@ var app = {
 				}
 			});
 			$('#menu_cancionero ul li').click(function(e) {
-				if($(this).hasClass('active')){
-					$(this).removeClass('active');
-					search_all();
-				}else{
+				li = $(this);
+				if(!li.hasClass('active')){
 					$('#menu_cancionero ul li').removeClass('active');
-					getSongsByCategory($(this).attr('data-category'));
-					setTimeout(function(){$(this).addClass('active');},500);
+					getSongsByCategory(li.attr('data-category'));
+					switch(li.attr('data-category')){case "1": tipo = "TOP 100"; break; case "2": tipo = "DESTACADAS"; break; case "3": tipo = "ÚLTIMAS AÑADIDAS"; break;}
+					//Setting search_name and sliding down search name text
+					$('#search_name span').html("<i>"+tipo+"</i>");
+					$('#search_name').slideDown('slow');
+					setTimeout(function(){li.addClass('active');},50);
 				}
             });
 			$('#alphabet ul').on('touchstart',function(e){
@@ -338,6 +340,8 @@ var app = {
                 $('#search_name').slideUp('slow',function(){
 					$('#search_name span').html("");
 				});
+				//Setting Top 100, Destacadas and Últimas añadidas inactive
+				$('#menu_cancionero ul li').removeClass('active');
 				//Deleting text on search bar input
 				$('#search_section .clear_input').click();
 				search_all();
@@ -699,7 +703,7 @@ function getSongsByCategory(category){
 		$('#alphabet ul li').css('color','#bbb');
 		$('#alphabet ul li').css('font-size','15px');
 		//Resetting search bar
-		$('#search_name div').click();		
+//		$('#search_name div').click();		
 		//Search on server
 		result = "";
 		if(category=="3"){
