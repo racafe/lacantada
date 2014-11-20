@@ -201,7 +201,7 @@ var app = {
 				}else{
 					$('#menu_cancionero ul li').removeClass('active');
 					getSongsByCategory($(this).attr('data-category'));
-					$(this).addClass('active');
+					setTimeout(function(){$(this).addClass('active');},500);
 				}
             });
 			$('#alphabet ul').on('touchstart',function(e){
