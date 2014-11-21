@@ -224,6 +224,7 @@ input[type=radio]:not(old):checked + label{
 	/* 2 columns */
 	/*width:50%; float:left; overflow:hidden;*/  
 }
+#covers_section .scroller li{height:50px; line-height:50px; font-size:21px;}
 .scroller li span{color:#fff;}
 .iScrollIndicator{border:none !important; background:rgba(100,100,100,0.5) !important;}
 
