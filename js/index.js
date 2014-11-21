@@ -166,6 +166,9 @@ var app = {
 						case 'menu':
 							setup_menu();
 						break;
+						case 'cancionero':
+							if(covers){covers.refresh();}
+						break;
 						case 'info':
 							setup_info();
 						break;
@@ -223,12 +226,12 @@ var app = {
 					selected = alphabet[pos];
 					if(current!=selected){
 						$('#alphabet ul li').css('color','#bbb');
-						$('#alphabet ul li').css('font-size','15px');
+						$('#alphabet ul li').css('font-size','17px');
 						$('#alphabet span').css('color','#bbb');
-						$('#alphabet span').css('font-size','15px');
+						$('#alphabet span').css('font-size','17px');
 						current = selected;
 						$('#alphabet ul li:nth-child('+(pos+1)+')').css('color','#fff');
-						$('#alphabet ul li:nth-child('+(pos+1)+')').css('font-size','18px');
+						$('#alphabet ul li:nth-child('+(pos+1)+')').css('font-size','20px');
 					}
 				}
 			});
@@ -245,20 +248,20 @@ var app = {
 			$('#alphabet span').click(function(e) {
 				$('#menu_cancionero ul li').removeClass('active');
 				$('#alphabet ul li').css('color','#bbb');
-				$('#alphabet ul li').css('font-size','15px');
+				$('#alphabet ul li').css('font-size','17px');
 				$(this).css('color','#fff');
-				$(this).css('font-size','17px');
+				$(this).css('font-size','20px');
 				limit=0;
 				search_song(search_text, "")
 			});
 			$('#alphabet ul li').click(function(e) {
 				$('#alphabet span').css('color','#bbb');
-				$('#alphabet span').css('font-size','15px');
+				$('#alphabet span').css('font-size','17px');
 				$('#alphabet ul li').css('color','#bbb');
-				$('#alphabet ul li').css('font-size','15px');
+				$('#alphabet ul li').css('font-size','17px');
 				current = $(this).html();
 				$(this).css('color','#fff');
-				$(this).css('font-size','18px');
+				$(this).css('font-size','20px');
             });
 			
 			$('#close_lyrics').click(function(e) {
@@ -301,6 +304,7 @@ var app = {
             });
 			function search_song(search_text, letter){
 				letter = typeof letter !== 'undefined' ? letter : '';
+				type = $('#search_section form input[name="radio"]:checked').val();
 				if(limit==0){$("#covers_section .scroller").html("");covers.scrollTo(0,2,500);}
 				result = "";
 				$.ajax({
@@ -311,7 +315,11 @@ var app = {
 						if(response.success){
 							count = response.items.length;
 							$.each(response.items,function (i,item) {
-								result+="<li data-id='"+item.idSong+"' data-artist='"+item.artist+"' data-song='"+item.song+"' data-km3='"+item.km3_code+"' data-cover='"+item.cover_path+"'>"+item.artist+"  -  <span>"+item.song+"</span></li>";
+								if(type==2){
+									result+="<li data-id='"+item.idSong+"' data-artist='"+item.artist+"' data-song='"+item.song+"' data-km3='"+item.km3_code+"' data-cover='"+item.cover_path+"'>"+item.song+"  -  <span>"+item.artist+"</span></li>";
+								}else{
+									result+="<li data-id='"+item.idSong+"' data-artist='"+item.artist+"' data-song='"+item.song+"' data-km3='"+item.km3_code+"' data-cover='"+item.cover_path+"'>"+item.artist+"  -  <span>"+item.song+"</span></li>";
+								}
 								//result+="<div class='cover'><img src='http://www.tuquinielita.com/lacantadabar/" + item.cover_path+ "' onerror='this.src=\"img/cover.jpg\"'></img><div class='song_name'>"+item.song+"</div><div class='artist_name'>"+item.artist+"</div></div>";
 								if (!--count) {
 									$("#covers_section .scroller").append(result);
@@ -501,6 +509,8 @@ var app = {
 								if (!--count) {
 									$("#photo_list .scroller").append(result);
 									$("#photo_list .scroller img").click(function(e) {
+										$("#photo_list .scroller img").removeClass('active');
+										$(this).addClass('active');
 										var data = $(this).attr('src');
 										$('#photo_show').animate({opacity:0},'10',function(){
 											$('#photo_show').css('background-image','url('+data+')');
