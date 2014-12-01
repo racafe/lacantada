@@ -139,7 +139,7 @@ section div{position:absolute; top:50%; margin-top:-20px; width:100%; text-align
 	-o-text-size-adjust: none;
 	text-size-adjust: none;
 }
-#lyrics .scroller{text-align:center; width:100%; margin-bottom:30px;}
+#lyrics .scroller{text-align:center; width:100%; margin-bottom:30px; font-size:27px;}
 input[type=radio   ]:not(old){
   width   : 28px;
   margin  : 0;
@@ -225,7 +225,7 @@ input[type=radio]:not(old):checked + label{
 	/* 2 columns */
 	/*width:50%; float:left; overflow:hidden;*/  
 }
-#covers_section .scroller li{height:50px; line-height:50px; font-size:21px;}
+#covers_section .scroller li{height:50px; line-height:50px; font-size:24px;}
 .scroller li span{color:#fff;}
 .iScrollIndicator{border:none !important; background:rgba(100,100,100,0.5) !important;}
 
@@ -251,9 +251,28 @@ header{width:100%; height:126px; position:relative; float:left;}
 #session_user{position:absolute; right:20px; top:63px; width:223px; line-height:42px; text-align:center; font-size:30px}
 
 /** MENU **/
-.title{width:100%; text-align:center; text-transform:uppercase; font-size:25px; color:#fff; font-weight:bold; background:rgba(0,0,0,0.5); line-height:40px; margin-bottom:10px;}
-#menu {width:530px; margin:5px; float:left; background:rgba(0,0,0,0.2);}
-#menu div:not(.title){float:left; margin:0px 5px 10px 10px; width:160px; height:85px; background-size:100% 100%; }
+#page_menu #div{width:300px; height:50px; margin-top:5px; float:left;}
+#page_menu .title{width:100%; text-align:center; text-transform:uppercase; font-size:25px; color:#fff; font-weight:bold; background:rgba(0,0,0,0.5); line-height:40px;}
+#menu {width:530px; margin:0; float:left; background:rgba(0,0,0,0.2); width:300px; height:485px; overflow:hidden; position: relative; padding-bottom:5px;
+	/* Prevent native touch events on Windows */
+	-ms-touch-action: none;
+
+	/* Prevent the callout on tap-hold and text selection */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	/* Prevent text resize on orientation change, useful for web-apps */
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+#menu .scroller{text-align:center; width:100%; margin-top:5px; margin-bottom:30px;}
+#menu .scroller div{float:left; margin:0px 5px 10px 10px; width:280px; height:148px; background-size:100% 100%; }
 div#ron.active{background-image:url(../img/menu/botonesmenuactiv01.png);}
 div#ron{background-image:url(../img/menu/botonesmenuinactivo01.png);}
 
@@ -299,7 +318,7 @@ div#colados{background-image:url(../img/menu/botonesmenuinactivo14.png);}
 div#varios.active{background-image:url(../img/menu/botonesmenuactiv15.png);}
 div#varios{background-image:url(../img/menu/botonesmenuinactivo15.png);}
 
-#menu_target{width:440px; height:525px; float:left; margin:5px; background:rgba(0,0,0,0.2);}
+#menu_target{width:680px; height:525px; float:left; margin:5px; background:rgba(0,0,0,0.2);}
 #menu_target .title{margin:0;}
 #menu_target_list{width:100%; height:440px; overflow:hidden; position: relative;
 	/* Prevent native touch events on Windows */
@@ -320,13 +339,13 @@ div#varios{background-image:url(../img/menu/botonesmenuinactivo15.png);}
 	text-size-adjust: none;
 }
 #menu_target_list .scroller{text-align:center; width:100%; margin-bottom:30px;}
-#menu_target_list .scroller li{list-style:none; background:rgba(0,0,0,0.1); font-weight:normal !important;}
+#menu_target_list .scroller li{list-style:none; background:rgba(0,0,0,0.1); font-weight:normal !important; font-size:18px;}
 #menu_target_list .scroller li:first-child{list-style:none; background:rgba(0,0,30,0.3); font-weight:bold;}
 #menu_target_list .scroller li span{ text-transform:uppercase; float:left;}
-#menu_target_list .scroller li span:nth-child(1){width:70px;}
-#menu_target_list .scroller li span:nth-child(2){width:220px; overflow:hidden;}
-#menu_target_list .scroller li span:nth-child(3){width:65px;}
-#menu_target_list .scroller li span:nth-child(4){width:65px;}
+#menu_target_list .scroller li span:nth-child(1){width:130px;}
+#menu_target_list .scroller li span:nth-child(2){width:325px; overflow:hidden;}
+#menu_target_list .scroller li span:nth-child(3){width:102px;}
+#menu_target_list .scroller li span:nth-child(4){width:102px;}
 /*** NAVIGATION FOOTER **/
 /*nav{position:absolute; bottom:0;}*/
 nav a{float:left; text-decoration:none; background-repeat:no-repeat; background-size:100% 100%; height:88px;}

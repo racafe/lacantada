@@ -401,6 +401,7 @@ var app = {
 		}
 		function setup_menu(){
 			menu = new IScroll('#menu_target_list',{click: true,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
+			menu2 = new IScroll('#menu',{click: true,scrollbars: true,interactiveScrollbars: true,shrinkScrollbars: 'scale',fadeScrollbars: true});
 			searching_drinks = false;
 			$('.category').click(function(e) {
 				if(!searching_drinks){
@@ -517,6 +518,20 @@ var app = {
 											$('#photo_show').animate({opacity:1},'10');
 										});
 									});
+									$("#photo_show").hammer().bind("swipeleft", function(){
+										if ($('#photo_list .scroller img.active').next().length){
+											img = $('#photo_list .scroller img.active');
+											img.removeClass('active');
+											img.next().click();
+										}
+									});
+									$("#photo_show").hammer().bind("swiperight", function(){
+										if ($('#photo_list .scroller img.active').prev().length){
+											img = $('#photo_list .scroller img.active');
+											img.removeClass('active');
+											img.prev().click();
+										}
+									});
 									photolist.refresh();
 									//Onload load first image by clicking on it
 									$('#photo_list .scroller img:first-child').click();
@@ -632,7 +647,7 @@ function cover_click_setup(){
 		km3 = $(this).attr('data-km3');
 		$('#popup_artist').html(artista);
 		$('#popup_name').html(cancion);
-		$('#popup_km3').html(km3);
+		//$('#popup_km3').html(km3);
 		$('#popup_cover').css('background-image',"url(http://www.tuquinielita.com/lacantadabar/"+$(this).attr('data-cover')+")");
 		$("#popup").fadeIn();
 		$.ajax({
